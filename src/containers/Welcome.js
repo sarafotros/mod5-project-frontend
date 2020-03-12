@@ -5,7 +5,8 @@ import { Route, Redirect } from 'react-router-dom';
 import Header from './Header';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
-import Main from './Main';
+import MainComp from './MainComp';
+import Upload from '../components/Upload'
 
 
 class Welcome extends React.Component {
@@ -52,10 +53,10 @@ class Welcome extends React.Component {
               <h1>{this.state.username}</h1>
               <Header username={this.state.username} logOut={this.logOut} /> 
               {this.state.username && <Redirect to='/' />}
-              <Route exact path="/" component={() => <Main />} />
+              <Route exact path="/" component={() => <MainComp />} />
               <Route exact path="/login" component={() => <Login logIn={this.logIn} />} />
               <Route exact path="/signup" component={() => <SignUp logIn={this.logIn} />} />
-           
+			  <Route exact path="/upload" component={() => <Upload />}/>
               {/* <Footer /> */}
 		</div>
 		);
