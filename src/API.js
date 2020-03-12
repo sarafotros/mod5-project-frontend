@@ -25,6 +25,7 @@ const post = (url, obj) => {
 
 
 const getUsers = () => get(userUrl);
+//   .catch (err => { console.log(err)})  ??
 
 const logingFetch = (body) => {
 	return post(loginUrl, body).then(resp => resp.json());

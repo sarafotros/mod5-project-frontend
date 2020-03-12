@@ -14,7 +14,7 @@ class Login extends Component {
     
     handleSubmit = (e) => {
         e.preventDefault() 
-		API.logingFetch(this.state)
+		   API.logingFetch(this.state)
 			.then(json => this.props.logIn(json.user, json.token));
       }
 
@@ -28,7 +28,7 @@ class Login extends Component {
                       <input type="text" name="username" onChange={this.handleChange} /> <br />
                       <label>Password</label>
                       <input type="password" name="password" onChange={this.handleChange} /> <br />
-                      <button type="submit" value="Sign In" class="button">Login</button>
+                      <button type="submit" value="Sign In">Login</button>
                 </form>
             </div>
         </div>

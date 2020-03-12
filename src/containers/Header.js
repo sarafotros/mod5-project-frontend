@@ -29,7 +29,8 @@ class Header extends React.Component {
                     </a>
                 </div>
                 <div >{this.logedIn()}
-                    <Link to="/cart">| My Booking .</Link>
+					<Link to="/booking">| My Booking </Link>
+					<Link to="/upload">| Upload Photo </Link>
                 </div>
             </div>
 		);
