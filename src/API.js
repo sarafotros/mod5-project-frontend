@@ -4,7 +4,7 @@ const userUrl = baseUrl + '/users';
 const loginUrl = baseUrl + '/login';
 const validateURL = baseUrl + '/validate';
 const signupURL = baseUrl + '/create';
-const serviceUrl = baseUrl + '/services'
+const serviceUrl = baseUrl + '/services';
 
 const get = (url) => (fetch(url).then(resp => resp.json()));
 

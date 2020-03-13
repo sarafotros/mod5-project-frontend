@@ -14,7 +14,9 @@ class Services extends React.Component {
     //     ))
     // }
 
+
     componentDidMount() {
+        const { services} = this.props
         const servicesByCategory = []
         for (let i = 0; i < services.length; i += 1){
             const currentItemCategory = servicesByCategory.find(

@@ -66,7 +66,7 @@ class Welcome extends React.Component {
               <Route exact path="/login" component={() => <Login logIn={this.logIn} />} />
               <Route exact path="/signup" component={() => <SignUp logIn={this.logIn} />} />
 			  {/* <Route exact path="/upload" component={() => <Upload />}/> */}
-		<Route exact path='/booking/services' component={() => <Services services={this.state.services}/>} />
+			  <Route exact path='/booking/services' component={() => <Services services={this.state.services}/>} />
 			  <Route exact path='/booking/:id' component={() => <AddNewRequest />} />
 
               {/* <Footer /> */}

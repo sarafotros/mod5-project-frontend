@@ -20,22 +20,22 @@ class Header extends React.Component {
 		);
 	};
 	render() {
-        return (
-            <div>
-                <Link to="/">Home</Link>
-                <div >
-                    <a href="#" target="_blank">
-                        About Us
-                    </a>
-                </div>
-                <div >{this.logedIn()}
+		return (
+			<div>
+				<Link to="/">Home</Link>
+				<div>
+					<a href="#" target="_blank">
+						About Us
+					</a>
+				</div>
+				<div>
+					{this.logedIn()}
 					<Link to="/booking">| My Booking </Link>
-					<Link to="/upload">| Upload Photo </Link>
-                </div>
-            </div>
+					<Link to="/booking/services">| Add New Request </Link>
+				</div>
+			</div>
 		);
-        
 	}
 }
- 
+
 export default Header;

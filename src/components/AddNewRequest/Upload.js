@@ -44,7 +44,7 @@ class Upload extends Component {
                     <br />
                     <button type='submit' value='Sign In' className='button'>
                         Upload
-          </button>
+                </button>
                 </form>
             </div>
         );
