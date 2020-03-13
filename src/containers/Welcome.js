@@ -57,7 +57,7 @@ class Welcome extends React.Component {
 
 	render() {
 		return (
-		//   const { users, services} = this.state
+		//   const { services} = this.state
           <div>
               <h1>{this.state.username}</h1>
               <Header username={this.state.username} logOut={this.logOut} /> 

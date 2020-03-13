@@ -43,17 +43,20 @@ class Services extends React.Component {
             <div className='services'>
                 {services.map((singleCategory) => {
                     return (
-                        <div className={singleCategory.category}>
-                            <h3>{singleCategory.category}</h3>
-                            <div className='services__categoryServices'>
-                                {singleCategory.items.map((singleService) => {
-                                    return (
-                                        <Service key={singleService.id} service={singleService} />
-                                    )
-                                })}
-                            </div>
-                     </div> 
-                  )
+                        <div key={singleCategory.category}>
+                        <h3>{singleCategory.category}</h3>
+                        <div className="services__categoryServices">
+                            {singleCategory.items.map(singleService => {
+                                return (
+                                    <Service
+                                        key={singleService.id}
+                                        service={singleService}
+                                    />
+                                );
+                            })}
+                        </div>
+                    </div>
+                     );
                 })}
             </div>
          );

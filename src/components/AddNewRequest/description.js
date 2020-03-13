@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 export default class Description extends Component {
+
+
     render() {
-        return <div> description </div>;
+        console.log(this.props)
+        return <div><h3>description</h3> </div>;
     }
 }

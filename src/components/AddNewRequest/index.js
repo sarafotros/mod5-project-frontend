@@ -44,6 +44,8 @@ class AddNewRequest extends React.Component {
 		}
 	};
 
+
+    // taking states from child components
 	changeCoordinates = newCoordinates => {
 		this.setState({
 			coordinates: newCoordinates
@@ -69,8 +71,10 @@ class AddNewRequest extends React.Component {
 		this.setState({
 			selectedHour: newValue
 		});
-	};
+    };
+    
 
+    // next page button 
 	goNextPage = () => {
 		const { currentLevel } = this.state;
 		this.setState({ currentLevel: currentLevel + 1 });
