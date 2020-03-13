@@ -4,6 +4,7 @@ const userUrl = baseUrl + '/users';
 const loginUrl = baseUrl + '/login';
 const validateURL = baseUrl + '/validate';
 const signupURL = baseUrl + '/create';
+const serviceUrl = baseUrl + '/services'
 
 const get = (url) => (fetch(url).then(resp => resp.json()));
 
@@ -25,7 +26,8 @@ const post = (url, obj) => {
 
 
 const getUsers = () => get(userUrl);
-//   .catch (err => { console.log(err)})  ??
+
+const getServices = () => get(serviceUrl);
 
 const logingFetch = (body) => {
 	return post(loginUrl, body).then(resp => resp.json());
@@ -41,5 +43,5 @@ const signup = (body) => {
     return post(signupURL,body).then(resp => resp.json())
 }
 
-export default { getUsers,logingFetch ,validate ,signup};
+export default { getUsers,logingFetch , validate , signup , getServices };
 
