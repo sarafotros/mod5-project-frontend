@@ -62,6 +62,7 @@ class Upload extends Component {
 						Upload
 					</button>
 				</form>
+				{/* <img src={this.data.image_url} alt="oh no" /> */}
 			</div>
 		);
 	}

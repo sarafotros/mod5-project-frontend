@@ -1,0 +1,7 @@
+.services {
+  max-width: 700px;
+  margin: auto;
+}
+.services__categoryServices {
+  display: flex;
+}

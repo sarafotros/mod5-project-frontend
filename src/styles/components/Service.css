@@ -1,0 +1,10 @@
+.service-box {
+  width: 100px;
+  height: 100px;
+  background-color: khaki;
+  border-radius: 10px;
+  box-shadow: 2px 3px #00000066;
+  margin: 10px;
+  cursor: pointer;
+}
+
