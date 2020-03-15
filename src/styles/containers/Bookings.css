@@ -1,0 +1,22 @@
+.bookings{
+  width: 65%;
+  min-width: 400px;
+}
+
+.bookings__items{
+    display: flex;
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 4px;  
+    align-items: center;
+}
+.bookings__basicDetails{
+    flex: 4;
+
+}
+.booking__status{
+ color: rgb(192, 192, 87);
+ flex:1;
+}
+.booking__btn{
+ flex:1; 
+}

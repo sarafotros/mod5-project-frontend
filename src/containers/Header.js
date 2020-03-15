@@ -30,7 +30,7 @@ class Header extends React.Component {
 				</div>
 				<div>
 					{this.logedIn()}
-					<Link to="/booking">| My Booking </Link>
+					<Link to="/bookings">| My Booking </Link>
 					<Link to="/booking/services">| Add New Request </Link>
 				</div>
 			</div>

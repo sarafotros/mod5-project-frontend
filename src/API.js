@@ -5,6 +5,8 @@ const loginUrl = baseUrl + '/login';
 const validateURL = baseUrl + '/validate';
 const signupURL = baseUrl + '/create';
 const serviceUrl = baseUrl + '/services';
+const handymanUrl = baseUrl + '/handy_men';
+const urlRequest = 'http://localhost:3001/requests/';
 
 const get = (url) => (fetch(url).then(resp => resp.json()));
 
@@ -29,6 +31,12 @@ const getUsers = () => get(userUrl);
 
 const getServices = () => get(serviceUrl);
 
+const getHandyman = () => get(handymanUrl);
+
+const getRequestDetails = (id) => get(urlRequest + id)
+
+const getRequests = () => get(urlRequest);
+
 const logingFetch = (body) => {
 	return post(loginUrl, body).then(resp => resp.json());
 };
@@ -43,5 +51,14 @@ const signup = (body) => {
     return post(signupURL,body).then(resp => resp.json())
 }
 
-export default { getUsers,logingFetch , validate , signup , getServices };
+export default {
+	getUsers,
+	logingFetch,
+	validate,
+	signup,
+	getServices,
+	getHandyman,
+	getRequestDetails,
+	getRequests
+};
 
