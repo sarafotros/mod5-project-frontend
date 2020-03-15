@@ -26,6 +26,7 @@ class Welcome extends React.Component {
 				user: user
 			})
 			localStorage.token = token;
+			localStorage.user_id = user.id
 		}
     };
     
@@ -57,20 +58,36 @@ class Welcome extends React.Component {
 
 	render() {
 		return (
-		//   const { services} = this.state
-          <div>
-              <h1>{this.state.username}</h1>
-              <Header username={this.state.username} logOut={this.logOut} /> 
-              {this.state.username && <Redirect to='/' />}
-              <Route exact path="/" component={() => <MainComp />} />
-              <Route exact path="/login" component={() => <Login logIn={this.logIn} />} />
-              <Route exact path="/signup" component={() => <SignUp logIn={this.logIn} />} />
-			  {/* <Route exact path="/upload" component={() => <Upload />}/> */}
-			  <Route exact path='/booking/services' component={() => <Services services={this.state.services}/>} />
-			  <Route exact path='/booking/:id' component={() => <AddNewRequest />} />
+			//   const { services} = this.state
+			<div>
+				<h1>{this.state.username}</h1>
+				<Header username={this.state.username} logOut={this.logOut} />
+				{this.state.username && <Redirect to="/" />}
+				<Route exact path="/" component={() => <MainComp />} />
+				<Route
+					exact
+					path="/login"
+					component={() => <Login logIn={this.logIn} />}
+				/>
+				<Route
+					exact
+					path="/signup"
+					component={() => <SignUp logIn={this.logIn} />}
+				/>
+				{/* <Route exact path="/upload" component={() => <Upload />}/> */}
+				<Route
+					exact
+					path="/booking/services"
+					component={() => <Services services={this.state.services} />}
+				/>
+				<Route
+					exact
+					path="/booking/services/:id"
+					component={() => <AddNewRequest />}
+				/>
 
-              {/* <Footer /> */}
-		</div>
+				{/* <Footer /> */}
+			</div>
 		);
 	}
 }
