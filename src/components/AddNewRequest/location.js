@@ -7,6 +7,10 @@ import {
 } from 'react-google-maps';
 import { withRouter } from 'react-router-dom';
 
+// let APIkey = AIzaSyAqaghXFHfeXGeqDFRynev2UoLS9HXyibY;
+
+
+
 // function getCoordinates(address) {
 // 	fetch(
 // 		'https://maps.googleapis.com/maps/api/geocode/json?address=' +

@@ -92,15 +92,6 @@ class AddNewRequest extends React.Component {
 		this.setState({ currentLevel: currentLevel - 1 });
 	};
 
-  /// Submit request
-  
-    // t.bigint "user_id", null: false
-    // t.bigint "service_id", null: false
-    // t.date "date"
-    // t.time "time"
-    // t.integer "number"
-    // t.string "post_code"
-    // t.text "description"
 
   submitRequest = () => {
     const {
