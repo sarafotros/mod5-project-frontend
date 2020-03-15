@@ -22,7 +22,8 @@ class RequestDetails extends React.Component {
 		this.getRequestDetails(this.props.match.params.id);
 	}
 
-    render() {
+	render() {
+		
         console.log('props', this.props)
         const {requestDetails} = this.state
         return (
