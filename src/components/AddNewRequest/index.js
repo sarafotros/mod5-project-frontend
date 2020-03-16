@@ -4,6 +4,7 @@ import TimePicker from './timePicker';
 import LocationForm from './location';
 import UploadData from './Upload';
 import * as moment from 'moment';
+import { withRouter } from 'react-router-dom'
 
 const URLUpload = 'http://localhost:3001/upload-photos';
 
@@ -118,7 +119,10 @@ class AddNewRequest extends React.Component {
 			body: formData
 		})
 			.then(resp => resp.json())
-			.then(data => console.log(data.image_url));
+      .then(data => {
+        console.log(data.image_url);
+         this.props.history.push('/bookings/' + data.request.id );
+      });
 	};
 
 	render() {
@@ -191,4 +195,4 @@ class AddNewRequest extends React.Component {
 	}
 }
 
-export default AddNewRequest;
+export default withRouter(AddNewRequest);

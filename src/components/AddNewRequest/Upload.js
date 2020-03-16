@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import API from '../../API';
-const URLUpload = 'http://localhost:3001/upload-photos';
+// const URLUpload = 'http://localhost:3001/upload-photos';
 
 class Upload extends Component {
   state = {

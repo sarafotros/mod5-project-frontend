@@ -3,6 +3,7 @@
 @import './styles/components/AddNewRequest/timePicker.css';
 @import './styles/components/AddNewRequest/description.css';
 @import './styles/components/AddNewRequest/location.css';
+@import './styles/containers/Bookings.css';
 * {
   text-align: center;
   margin: 10px auto;

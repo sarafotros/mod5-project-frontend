@@ -5,6 +5,12 @@ const loginUrl = baseUrl + '/login';
 const validateURL = baseUrl + '/validate';
 const signupURL = baseUrl + '/create';
 const serviceUrl = baseUrl + '/services';
+const urlRequest = baseUrl + '/requests/';
+
+const handymanUrl = baseUrl + '/handy_men';
+const handyLoginURL = baseUrl + '/login_handy';
+const validateHandyURL = baseUrl + '/validate_handy';
+const signupHandyURL = baseUrl + '/signup_handy';
 
 const get = (url) => (fetch(url).then(resp => resp.json()));
 
@@ -29,6 +35,14 @@ const getUsers = () => get(userUrl);
 
 const getServices = () => get(serviceUrl);
 
+const getHandyman = () => get(handymanUrl);
+
+const getRequestDetails = (id) => get(urlRequest + id)
+
+const getRequests = () => get(urlRequest);
+
+//user sign in + sign up + validate
+
 const logingFetch = (body) => {
 	return post(loginUrl, body).then(resp => resp.json());
 };
@@ -43,5 +57,30 @@ const signup = (body) => {
     return post(signupURL,body).then(resp => resp.json())
 }
 
-export default { getUsers,logingFetch , validate , signup , getServices };
+// HANDYMAN  sign in + sign up + validate
+const logingHandyFetch = body => {
+	return post(handyLoginURL, body).then(resp => resp.json());
+};
+
+const validateHandy = token => {
+	return getToken(validateHandyURL, token);
+};
+
+const signupHandy = body => {
+	return post(signupHandyURL, body).then(resp => resp.json());
+};
+
+export default {
+	getUsers,
+	logingFetch,
+	validate,
+	signup,
+	getServices,
+	getHandyman,
+	getRequestDetails,
+	getRequests,
+	logingHandyFetch,
+	validateHandy,
+	signupHandy
+};
 

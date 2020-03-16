@@ -9,12 +9,15 @@ import MainComp from './MainComp';
 // import Upload from '../components/Upload'
 import AddNewRequest from '../components/AddNewRequest';
 import Services from '../containers/Services';
+import RequestDetails from '../components/requestDetails';
+import Bookings from './Bookings';
 
 
 class Welcome extends React.Component {
 	state = {
 		users: [],
 		username: null,
+		handymen: [],
 		user: null,
 		services: []
 	};
@@ -46,6 +49,10 @@ class Welcome extends React.Component {
 		API.getServices().then(services => this.setState({ services }))
 	}
 
+	getHandymen = () => {
+		API.getHandyman().then(handymen => this.setState ({ handymen}))
+	}
+
 	componentDidMount() {
 		if (localStorage.token) {
 			API.validate(localStorage.token).then(json =>
@@ -54,6 +61,7 @@ class Welcome extends React.Component {
 		}
 		this.getUsers();
 		this.getServices();
+		this.getHandymen();
 	}
 
 	render() {
@@ -84,6 +92,16 @@ class Welcome extends React.Component {
 					exact
 					path="/booking/services/:id"
 					component={() => <AddNewRequest />}
+				/>
+				<Route
+					exact
+					path="/bookings/:id"
+					component={() => <RequestDetails />}
+				/>
+				<Route
+					exact
+					path="/bookings"
+					component={() => <Bookings />}
 				/>
 
 				{/* <Footer /> */}
