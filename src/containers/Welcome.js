@@ -18,6 +18,8 @@ class Welcome extends React.Component {
 		users: [],
 		username: null,
 		handymen: [],
+		handyname: null,
+		handyman: null,
 		user: null,
 		services: []
 	};
@@ -27,41 +29,59 @@ class Welcome extends React.Component {
 			this.setState({
 				username: user.username,
 				user: user
-			})
+			});
 			localStorage.token = token;
-			localStorage.user_id = user.id
+			localStorage.user_id = user.id;
 		}
-    };
-    
+	};
 
 	logOut = () => {
 		this.setState({
 			username: null
 		});
-		localStorage.removeItem('token')
+		localStorage.removeItem('token');
 	};
 
 	getUsers = () => {
-		API.getUsers().then(users => this.setState({ users }))
+		API.getUsers().then(users => this.setState({ users }));
 	};
 
+	//services
 	getServices = () => {
-		API.getServices().then(services => this.setState({ services }))
-	}
+		API.getServices().then(services => this.setState({ services }));
+	};
+
+	//// handy man
+	logInHandy = (handyman, token) => {
+		if (handyman) {
+			this.setState({
+				handyname: handyman.handyname,
+				handyman: handyman
+			});
+			localStorage.token = token;
+			localStorage.handyman_id = handyman.id;
+		}
+	};
+
+	logOutHandy = () => {
+		this.setState({
+			handyname: null
+		});
+		localStorage.removeItem('token');
+	};
 
 	getHandymen = () => {
-		API.getHandyman().then(handymen => this.setState ({ handymen}))
-	}
+		API.getHandyman().then(handymen => this.setState({ handymen }));
+	};
 
 	componentDidMount() {
 		if (localStorage.token) {
 			API.validate(localStorage.token).then(json =>
 				this.logIn(json.user, json.token)
-			)
+			);
 		}
 		this.getUsers();
 		this.getServices();
-		this.getHandymen();
 	}
 
 	render() {
@@ -98,11 +118,7 @@ class Welcome extends React.Component {
 					path="/bookings/:id"
 					component={() => <RequestDetails />}
 				/>
-				<Route
-					exact
-					path="/bookings"
-					component={() => <Bookings />}
-				/>
+				<Route exact path="/bookings" component={() => <Bookings />} />
 
 				{/* <Footer /> */}
 			</div>
