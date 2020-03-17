@@ -11,10 +11,11 @@ class Bookings extends React.Component {
 		API.getRequests().then(requests => this.setState({ requests }));
 	};
 
-	componentDidMount() {
+    componentDidMount() {
+        const { logIn } = this.props
 		if (localStorage.token) {
 			API.validate(localStorage.token).then(json =>
-				this.logIn(json.user, json.token)
+				logIn(json.user, json.token)
 			);
 		}
 		this.getRequests();

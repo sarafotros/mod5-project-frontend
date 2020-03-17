@@ -101,7 +101,7 @@ class Welcome extends React.Component {
 				<Route
 					exact
 					path="/bookings"
-					component={() => <Bookings />}
+					component={() => <Bookings logIn={this.logIn}/>}
 				/>
 
 				{/* <Footer /> */}
