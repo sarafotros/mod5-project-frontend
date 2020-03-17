@@ -11,16 +11,20 @@ import AddNewRequest from '../components/AddNewRequest';
 import Services from '../containers/Services';
 import RequestDetails from '../components/requestDetails';
 import Bookings from './Bookings';
-
+import SignUpHandyMan from '../components/SignUpHandyMan';
+// import LoginHandy from '../components/LoginHandy';
+import Footer from '../containers/Footer';
 
 class Welcome extends React.Component {
 	state = {
+		user: null,
 		users: [],
 		username: null,
+
 		handymen: [],
 		handyname: null,
 		handyman: null,
-		user: null,
+
 		services: []
 	};
 
@@ -51,7 +55,7 @@ class Welcome extends React.Component {
 		API.getServices().then(services => this.setState({ services }));
 	};
 
-	//// handy man
+	// handy man
 	logInHandy = (handyman, token) => {
 		if (handyman) {
 			this.setState({
@@ -119,8 +123,10 @@ class Welcome extends React.Component {
 					component={() => <RequestDetails />}
 				/>
 				<Route exact path="/bookings" component={() => <Bookings />} />
+				<Route exact path="/signup-handy" component={() => <SignUpHandyMan />} />
 
-				{/* <Footer /> */}
+				<span>Click 👇🏻 if you are a HandyMan 👷🏽‍♂️</span>
+				<Footer />
 			</div>
 		);
 	}
