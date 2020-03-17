@@ -110,17 +110,16 @@ class AddNewRequest extends React.Component {
     formData.append('time', selectedHour);
     formData.append('number', number);
     formData.append('post_code', postCode);
-		formData.append('user_id', localStorage.user_id);
-		formData.append('service_id', JSON.parse(localStorage.selectedService).id);
+	formData.append('user_id', localStorage.user_id);
+	formData.append('service_id', JSON.parse(localStorage.selectedService).id);
 
 		return fetch(URLUpload, {
 			method: 'POST',
 			headers: {},
 			body: formData
-		})
-			.then(resp => resp.json())
-      .then(data => {
-        console.log(data.image_url);
+		}).then(resp => resp.json())
+      	.then(data => {
+         console.log(data.image_url);
          this.props.history.push('/bookings/' + data.request.id );
       });
 	};
@@ -135,8 +134,8 @@ class AddNewRequest extends React.Component {
 			selectedDay,
 			selectedHour,
 			description,
-      image,
-      imageName
+      		image,
+      		imageName
 		} = this.state;
 		console.log('selectedDay', selectedDay);
 		return (
@@ -168,8 +167,8 @@ class AddNewRequest extends React.Component {
 				{levels[currentLevel].value === 'UPLOAD_DATA' && (
 					<UploadData
 						description={description}
-            image={image}
-            imageName={imageName}
+            			image={image}
+            			imageName={imageName}
 						changePhotoDescription={this.changePhotoDescription}
 						changeImage={this.changeImage}
 					/>

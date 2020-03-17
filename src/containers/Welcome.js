@@ -11,67 +11,105 @@ import AddNewRequest from '../components/AddNewRequest';
 import Services from '../containers/Services';
 import RequestDetails from '../components/requestDetails';
 import Bookings from './Bookings';
-
+import SignUpHandyMan from '../components/SignUpHandyMan';
+import LoginHandy from '../components/LoginHandy';
+import Footer from '../containers/Footer';
 
 class Welcome extends React.Component {
 	state = {
+		user: null,
 		users: [],
 		username: null,
+
 		handymen: [],
-		user: null,
+		handyname: null,
+		handyman: null,
+
 		services: []
 	};
 
 	logIn = (user, token) => {
-		if (user) {
+		console.log("login")
+
+		if (user && !this.state.username) {
 			this.setState({
 				username: user.username,
 				user: user
-			})
+			});
 			localStorage.token = token;
-			localStorage.user_id = user.id
+			localStorage.role = 'user';
+			localStorage.user_id = user.id;
 		}
-    };
-    
+	};
 
 	logOut = () => {
 		this.setState({
-			username: null
+			username: null,
+			handyname: null,
 		});
 		localStorage.removeItem('token')
+		localStorage.removeItem('role');
+		window.location.reload()
 	};
 
 	getUsers = () => {
-		API.getUsers().then(users => this.setState({ users }))
+		console.log("getusers")
+
+		API.getUsers().then(users => this.setState({ users }));
 	};
 
+	//services
 	getServices = () => {
-		API.getServices().then(services => this.setState({ services }))
-	}
+		console.log("getservices")
+
+		API.getServices().then(services => this.setState({ services }));
+	};
+
+	// handy man
+	logInHandy = (handyman, token) => {
+		if (handyman) {
+			this.setState({
+				handyname: handyman.handyname,
+				handyman: handyman
+			});
+			localStorage.token = token;
+			localStorage.role = 'handy_man';
+			localStorage.handyman_id = handyman.id;
+		}
+	};
+
+	// logOutHandy = () => {
+	// 	this.setState({
+	// 		handyname: null
+	// 	});
+	// 	localStorage.removeItem('token');
+	// };
 
 	getHandymen = () => {
-		API.getHandyman().then(handymen => this.setState ({ handymen}))
-	}
+		API.getHandyman().then(handymen => this.setState({ handymen }));
+	};
+
 
 	componentDidMount() {
+		console.log("didmount")
 		if (localStorage.token) {
 			API.validate(localStorage.token).then(json =>
 				this.logIn(json.user, json.token)
-			)
+			);
 		}
 		this.getUsers();
 		this.getServices();
-		this.getHandymen();
 	}
 
 	render() {
+		console.log("2")
 		return (
 			//   const { services} = this.state
 			<div>
 				<h1>{this.state.username}</h1>
-				<Header username={this.state.username} logOut={this.logOut} />
-				{this.state.username && <Redirect to="/" />}
-				<Route exact path="/" component={() => <MainComp />} />
+				<Header username={this.state.username} handyname={this.state.handyname} logOut={this.logOut} />
+				{(this.state.username || this.state.handyname ) && <Redirect to="/" />}
+				<Route exact path="/"  ><MainComp /></Route>
 				<Route
 					exact
 					path="/login"
@@ -96,15 +134,14 @@ class Welcome extends React.Component {
 				<Route
 					exact
 					path="/bookings/:id"
-					component={() => <RequestDetails />}
+					component={() => <RequestDetails logIn={this.logIn}/>}
 				/>
-				<Route
-					exact
-					path="/bookings"
-					component={() => <Bookings logIn={this.logIn}/>}
-				/>
-
-				{/* <Footer /> */}
+				<Route exact path="/bookings" component={() => <Bookings logIn={this.logIn}/>} />
+				<Route exact path="/signup-handy" component={() => <SignUpHandyMan logInHandy={this.logInHandy}/>} />
+				<Route exact path="/login-handyman" component={() => <LoginHandy logInHandy={this.logInHandy}/>} />
+						
+				<span>Click 👇🏻 if you are a HandyMan 👷🏽‍♂️</span>
+				<Footer />
 			</div>
 		);
 	}

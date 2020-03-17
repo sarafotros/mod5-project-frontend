@@ -7,8 +7,8 @@ import './App.css';
 class App extends React.Component {
 
   render() {
-
-    return (
+	  console.log("4")
+	  return (
 			<div>
 				<Router>
 					<Welcome />

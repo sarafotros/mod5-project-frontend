@@ -37,11 +37,16 @@ class SignUp extends Component {
 						<input type="text" name="phone" onChange={this.handleChange} />
 						<br />
 						<label>Password</label>
-						<input type="password"name="password" onChange={this.handleChange}/>
+						<input
+							type="password"
+							name="password"
+							onChange={this.handleChange}
+						/>
 						<br />
-						<input type="submit" value="Sign up"/>
+						<input type="submit" value="Sign up" />
 					</form>
 				</div>
+				
 			</div>
 		);
 	}

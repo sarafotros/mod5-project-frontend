@@ -1,49 +1,47 @@
-import React, { Component } from 'react';
+import React from 'react';
 import API from '../API';
 
-class Login extends Component {
+
+class LoginHandy extends React.Component {
 	state = {
-		username: '',
+		handyname: '',
 		password: '',
 		userIsInvalid: false,
 		invalidMessage: ''
 	};
 
-	handleChange = e => {
+	handleChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
 		});
 	};
-	handleSubmit = e => {
+	
+	handleSubmit = (e) => {
 		e.preventDefault();
-		const { username, password } = this.state
-		const loginData = { username, password }
-		
-		API.logingFetch(loginData).then(json => {
-			console.log(json)
+		const { handyname, password } = this.state
+		const loginData = { handyname, password }
+		API.logingHandyFetch(loginData).then(json => {
 			if (json.errorCode === 1001) {
-				console.log('user is invalid');
 				this.setState({
 					userIsInvalid: true,
 					invalidMessage: json.message
 				});
 			}
-			this.props.logIn(json.user, json.token);
+			this.props.logInHandy(json.handy_man, json.token);
 		});
-	};
-
+	 };
+	
 	render() {
-		const { userIsInvalid, invalidMessage } = this.state;
-		
+		const { userIsInvalid, invalidMessage} = this.state
 		return (
 			<div>
-				<h2>Login</h2>
+				<h2>HandyMan Login</h2>
 				<div>
 					<form onSubmit={this.handleSubmit}>
 						<label>Username:</label>
 						<input
 							type="text"
-							name="username"
+							name="handyname"
 							onChange={this.handleChange}
 							required
 						/>{' '}
@@ -56,15 +54,18 @@ class Login extends Component {
 							required
 						/>{' '}
 						<br />
-						<button type="submit" value="Sign In">
+						<button type="submit">
 							Login
 						</button>
-						{userIsInvalid && <p style={{ color: 'red' }}>{invalidMessage}</p>}
 					</form>
+					
 				</div>
+
+				{userIsInvalid && <p style={{ color: 'red' }}>{invalidMessage}</p>}
+
 			</div>
 		);
 	}
 }
-
-export default Login;
+ 
+export default LoginHandy;

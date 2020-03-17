@@ -14,16 +14,17 @@ class RequestDetails extends React.Component {
 	};
 
 	componentDidMount() {
+		const { logIn } = this.props
+		console.log("1")
 		if (localStorage.token) {
 			API.validate(localStorage.token).then(json =>
-				this.logIn(json.user, json.token)
+				logIn(json.user, json.token)
 			);
 		}
 		this.getRequestDetails(this.props.match.params.id);
 	}
 
 	render() {
-		
         console.log('props', this.props)
         const {requestDetails} = this.state
         return (

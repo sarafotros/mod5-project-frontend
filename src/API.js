@@ -58,6 +58,7 @@ const signup = (body) => {
 }
 
 // HANDYMAN  sign in + sign up + validate
+
 const logingHandyFetch = body => {
 	return post(handyLoginURL, body).then(resp => resp.json());
 };
@@ -76,9 +77,9 @@ export default {
 	validate,
 	signup,
 	getServices,
-	getHandyman,
 	getRequestDetails,
 	getRequests,
+	getHandyman,
 	logingHandyFetch,
 	validateHandy,
 	signupHandy
