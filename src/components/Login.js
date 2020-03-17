@@ -59,7 +59,7 @@ class Login extends Component {
 						<button type="submit" value="Sign In">
 							Login
 						</button>
-						{userIsInvalid && <p style={{ color: 'red' }}>{invalidMessage}</p>}
+						{userIsInvalid && <p style={{ color: 'red' }}>{invalidMessage}</p>} 
 					</form>
 				</div>
 			</div>

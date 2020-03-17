@@ -9,12 +9,12 @@ const urlRequest = baseUrl + '/requests/';
 
 const handymanUrl = baseUrl + '/handy_men';
 const handyLoginURL = baseUrl + '/login_handy';
-const validateHandyURL = baseUrl + '/validate_handy';
+const validateHandyURL = baseUrl + '/valid_handy';
 const signupHandyURL = baseUrl + '/signup_handy';
 
-const get = (url) => (fetch(url).then(resp => resp.json()));
+const get = (url) => (fetch(url, { headers: { 'Authorization': localStorage.token } }).then(resp => resp.json()));
 
-const getToken = (url, token) =>(
+const getToken= (url, token) =>(
 	fetch(url, { headers: { 'Authorization': token } }).then(resp => resp.json())
 )
 
