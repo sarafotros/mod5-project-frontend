@@ -2,6 +2,7 @@ import React from 'react';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
+
 class Header extends React.Component {
 	state = {};
 
@@ -28,6 +29,7 @@ class Header extends React.Component {
 						About Us
 					</a>
 				</div>
+					
 				<div>
 					{this.logedIn()}
 					<Link to="/bookings">| My Booking </Link>
