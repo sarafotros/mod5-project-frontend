@@ -1,6 +1,8 @@
 import React from 'react';
 import API from '../API'
 import { Link } from 'react-router-dom';
+import {  Redirect } from 'react-router-dom';
+
 
 class Bookings extends React.Component {
 	state = {
@@ -27,6 +29,7 @@ class Bookings extends React.Component {
     render() {
         const { requests } = this.state
         console.log('requests ', requests)
+        if (!localStorage.token) { return <Redirect to="/" />}
         return requests ? (
                 <div className="bookings">
                     {requests.map(req => (

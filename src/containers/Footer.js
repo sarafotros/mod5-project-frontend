@@ -13,8 +13,8 @@ class Footer extends React.Component {
 								src={LogoImage}
 								alt="oh-no"
 								style={{
-									width: '300px',
-									height: '300px',
+									width: '250px',
+									height: '250px',
 									border: '2px solid grey'
 								}}
 							/>
