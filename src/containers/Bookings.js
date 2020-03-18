@@ -1,6 +1,8 @@
 import React from 'react';
 import API from '../API'
 import { Link } from 'react-router-dom';
+import {  Redirect } from 'react-router-dom';
+
 
 class Bookings extends React.Component {
 	state = {
@@ -8,16 +10,18 @@ class Bookings extends React.Component {
 	};
 
 	getRequests = () => {
-		API.getRequests().then(requests => this.setState({ requests }));
+        API.getRequests().then(requests => this.setState({
+            requests: (localStorage.role === 'user') ? (requests.filter(req => req.user_id == localStorage.user_id)) : requests
+        }));
 	};
 
     componentDidMount() {
-        const { logIn } = this.props
-		if (localStorage.token) {
-			API.validate(localStorage.token).then(json =>
-				logIn(json.user, json.token)
-			);
-		}
+        // const { logIn } = this.props
+		// if (localStorage.token) {
+		// 	API.validate(localStorage.token).then(json =>
+		// 		logIn(json.user, json.token)
+		// 	);
+		// }
 		this.getRequests();
     }
     
@@ -25,6 +29,7 @@ class Bookings extends React.Component {
     render() {
         const { requests } = this.state
         console.log('requests ', requests)
+        if (!localStorage.token) { return <Redirect to="/" />}
         return requests ? (
                 <div className="bookings">
                     {requests.map(req => (

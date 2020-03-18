@@ -39,6 +39,7 @@ class Welcome extends React.Component {
 			localStorage.token = token;
 			localStorage.role = 'user';
 			localStorage.user_id = user.id;
+			window.location.reload();
 		}
 	};
 
@@ -75,6 +76,7 @@ class Welcome extends React.Component {
 			localStorage.token = token;
 			localStorage.role = 'handy_man';
 			localStorage.handyman_id = handyman.id;
+			window.location.reload();
 		}
 	};
 
@@ -91,12 +93,11 @@ class Welcome extends React.Component {
 
 
 	componentDidMount() {
-		console.log("didmount")
-		if (localStorage.token) {
-			API.validate(localStorage.token).then(json =>
-				this.logIn(json.user, json.token)
-			);
-		}
+		// if (localStorage.token) {
+		// 	API.validate(localStorage.token).then(json =>
+		// 		this.logIn(json.user, json.token)
+		// 	);
+		// }
 		this.getUsers();
 		this.getServices();
 	}

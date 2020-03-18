@@ -7,7 +7,7 @@ class Header extends React.Component {
 	state = {};
 
 	logedIn = () => {
-		return this.props.username ? (
+		return localStorage.token ? (
 			<Fragment>
 				{' '}
 				<Link onClick={this.props.logOut} to="/">
@@ -32,8 +32,8 @@ class Header extends React.Component {
 					
 				<div>
 					{this.logedIn()}
-					{(this.props.username || this.props.handyname) && <Link to="/bookings">|{this.props.username ? "My Booking" : "ALL REQUESTS"} </Link>}
-					<Link to="/booking/services">| Add New Request </Link>
+					{(localStorage.token) && <Link to="/bookings">|{localStorage.role ==='user' ? "My Booking" : "ALL REQUESTS"} </Link>}
+					{localStorage.role === 'user'  && <Link to="/booking/services">| Add New Request </Link>}
 				</div>
 			</div>
 		);
