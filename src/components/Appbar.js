@@ -5,11 +5,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Grid, IconButton } from '@material-ui/core';
-import LoginModal from './LoginModal';
+import SigninModal from './SigninModal';
+import SignUpModal from './SignupModal';
 
 export default class Appbar extends Component {
   state = {
     loginModalIsOpen: false,
+    signupModalIsOpen: false,
   };
 
   toggleLoginModal = () => {
@@ -17,20 +19,38 @@ export default class Appbar extends Component {
       loginModalIsOpen: !this.state.loginModalIsOpen,
     });
   };
+
+  toggleSignupModal = () => {
+    this.setState({
+      signupModalIsOpen: !this.state.signupModalIsOpen,
+    });
+  };
+
+  logOutClicked = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    window.location.reload();
+  };
+
   render() {
     const { classes, open, handleDrawerOpen } = this.props;
-    const { loginModalIsOpen } = this.state;
+    const { loginModalIsOpen, signupModalIsOpen } = this.state;
     return (
       <>
-        <LoginModal
+        <SigninModal
           isOpen={loginModalIsOpen}
           toggleLoginModal={this.toggleLoginModal}
+        />
+        <SignUpModal
+          isOpen={signupModalIsOpen}
+          toggleSignupModal={this.toggleSignupModal}
         />
         <AppBar
           position='fixed'
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
           })}
+          color='primary'
         >
           <Toolbar>
             <IconButton
@@ -52,12 +72,22 @@ export default class Appbar extends Component {
               </Grid>
               <Grid item>
                 <Grid container justify='space-between'>
-                  <Grid item onClick={this.toggleLoginModal}>
-                    Login
-                  </Grid>
-                  <Grid item>&nbsp;|&nbsp;</Grid>
-                  {/* &emsp; */}
-                  <Grid item>Sign up</Grid>
+                  {localStorage.token ? (
+                    <Grid item onClick={this.logOutClicked}>
+                      Logout
+                    </Grid>
+                  ) : (
+                    <>
+                      <Grid item onClick={this.toggleLoginModal}>
+                        Login
+                      </Grid>
+                      <Grid item>&nbsp;|&nbsp;</Grid>
+                      {/* &emsp; */}
+                      <Grid item onClick={this.toggleSignupModal}>
+                        Sign up
+                      </Grid>
+                    </>
+                  )}
                 </Grid>
               </Grid>
             </Grid>

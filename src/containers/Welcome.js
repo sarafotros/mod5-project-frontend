@@ -8,12 +8,12 @@ import SignUp from '../components/SignUp';
 import MainComp from './MainComp';
 // import Upload from '../components/Upload'
 import AddNewRequest from '../components/AddNewRequest';
-import Services from './Services';
+import Services from '../containers/Services';
 import RequestDetails from '../components/requestDetails';
 import Bookings from './Bookings';
 import SignUpHandyMan from '../components/SignUpHandyMan';
 import LoginHandy from '../components/LoginHandy';
-import Footer from './Footer';
+import Footer from '../containers/Footer';
 import Button from '@material-ui/core/Button';
 class Welcome extends React.Component {
   state = {
@@ -29,13 +29,11 @@ class Welcome extends React.Component {
   };
 
   logIn = (user, token) => {
-    console.log('login');
-
     if (user && !this.state.username) {
-      this.setState({
-        username: user.username,
-        user: user,
-      });
+      // this.setState({
+      //   username: user.username,
+      //   user: user,
+      // });
       localStorage.token = token;
       localStorage.role = 'user';
       localStorage.user_id = user.id;
