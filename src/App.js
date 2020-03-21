@@ -1,23 +1,26 @@
 import React from 'react';
 import Welcome from './containers/Welcome';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import './App.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import Homepage from './containers/Homepage';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import theme from './theme';
 
 class App extends React.Component {
-
   render() {
-	  console.log("4")
-	  return (
-			<div>
-				<Router>
-					<Welcome />
-				</Router>
-			</div>
-		);
+    return (
+      <div>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router>
+            {/* <Welcome /> */}
+            <Homepage />
+          </Router>
+        </MuiThemeProvider>
+      </div>
+    );
   }
 }
 
 export default App;
-
-
