@@ -48,7 +48,7 @@ class Upload extends Component {
 					onChange={changeImage}
 				/>
 				<br />
-				<label>More description about your case</label>
+				<label>More description about your request</label>
 				<br />
 				<textarea
 					name="description"
@@ -56,7 +56,6 @@ class Upload extends Component {
 					onChange={changePhotoDescription}
 				/>
 				<br />
-				{/* <img src={this.data.image_url} alt="oh no" /> */}
 			</div>
 		);
   }
