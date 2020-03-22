@@ -32,6 +32,10 @@ const useStyles = makeStyles({
 		textDecoration: 'underline',
 		color: 'blue',
 		cursor: 'pointer'
+	},
+	snackBarMessages: {
+		display: 'flex',
+		flexDirection: 'column'
 	}
 });
 

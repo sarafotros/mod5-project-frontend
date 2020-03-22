@@ -27,7 +27,6 @@ function SignInModal(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const body = {
       username,
       password,

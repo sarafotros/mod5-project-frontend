@@ -42,7 +42,6 @@ const getRequestDetails = (id) => get(urlRequest + id)
 const getRequests = () => get(urlRequest);
 
 //user sign in + sign up + validate
-
 const logingFetch = (body) => {
 	return post(loginUrl, body).then(resp => resp.json());
 };
@@ -58,7 +57,6 @@ const signup = (body) => {
 }
 
 // HANDYMAN  sign in + sign up + validate
-
 const logingHandyFetch = body => {
 	return post(handyLoginURL, body).then(resp => resp.json());
 };
@@ -71,6 +69,7 @@ const signupHandy = body => {
 	return post(signupHandyURL, body).then(resp => resp.json());
 };
 
+// API object
 export default {
 	getUsers,
 	logingFetch,

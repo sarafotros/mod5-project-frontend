@@ -8,15 +8,12 @@ class Header extends React.Component {
 
 	logedIn = () => {
 		return localStorage.token ? (
-			<Fragment>
-				{' '}
 				<Link onClick={this.props.logOut} to="/">
 					Log Out
-				</Link>{' '}
-			</Fragment>
+				</Link>
 		) : (
 			<Fragment>
-				<Link to="/login"> Login </Link> | <Link to="/signup"> SignUp </Link>{' '}
+				<Link to="/login"> Login </Link> | <Link to="/signup"> SignUp </Link>
 			</Fragment>
 		);
 	};
@@ -25,9 +22,9 @@ class Header extends React.Component {
 			<div>
 				<Link to="/">Home</Link>
 				<div>
-					<a href="#" target="_blank">
+					<p>
 						About Us
-					</a>
+					</p>
 				</div>
 					
 				<div>

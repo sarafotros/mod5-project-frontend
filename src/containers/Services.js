@@ -1,55 +1,66 @@
 import React from 'react';
 import Service from '../components/Service';
+import API from '../API';
 
 
 
 class Services extends React.Component {
 	state = {
 		services: [],
-        searchTerm: '',
-        filteredServices: []
+		searchTerm: '',
+		filteredServices: []
 	};
 
-    searchServices = searchTerm => {
-        const { services } = this.state
+	getServices = () => {
+		API.getServices().then(services => {
+			const servicesByCategory = [
+				// { category: 'painting', items: [a, b, c] },
+				// { category: 'cleaning', items: [a, b, c] }
+			];
+			for (let i = 0; i < services.length; i += 1) {
+				const currentItemCategory = servicesByCategory.find(
+					singleService => singleService.category === services[i].category
+				);
+				if (currentItemCategory) {
+					currentItemCategory.items.push(services[i]);
+				} else {
+					servicesByCategory.push({
+						category: services[i].category,
+						items: [services[i]]
+					});
+				}
+			}
+			console.log('servicesByCategory', servicesByCategory);
+			this.setState({
+				services: servicesByCategory,
+				filteredServices: servicesByCategory
+			});
+		});
+	};
 
-        console.log('searchTerm', searchTerm);
-        console.log('services', services);
-        const newServices = services.map(category => {
-            return {
-							category: category.category,
-							items: category.items.filter(service =>
-								service.name.toUpperCase().includes(searchTerm.toUpperCase())
-							)
-						};
-        })
-        console.log('newServices', newServices);
-        this.setState({
-            filteredServices: newServices
-        });
-    };
+	searchServices = searchTerm => {
+		const { services } = this.state;
+
+		console.log('searchTerm', searchTerm);
+		console.log('services', services);
+		const newServices = services.map(category => {
+			return {
+				category: category.category,
+				items: category.items.filter(service =>
+					service.name.toUpperCase().includes(searchTerm.toUpperCase())
+				)
+			};
+		});
+		console.log('newServices', newServices);
+		this.setState({
+			filteredServices: newServices
+		});
+	};
 
 	componentDidMount() {
-		const { services } = this.props;
-		const servicesByCategory = [];
-		for (let i = 0; i < services.length; i += 1) {
-			const currentItemCategory = servicesByCategory.find(
-				singleService => singleService.category === services[i].category
-			);
-			if (currentItemCategory) {
-				currentItemCategory.items.push(services[i]);
-			} else {
-				servicesByCategory.push({
-					category: services[i].category,
-					items: [services[i]]
-				});
-			}
-		}
-		console.log('servicesByCategory', servicesByCategory);
-		this.setState({
-            services: servicesByCategory,
-            filteredServices: servicesByCategory
-		});
+		this.getServices()
+		// const { services } = this.;
+
 	}
 
 	render() {
@@ -61,7 +72,7 @@ class Services extends React.Component {
 					placeholder="Search..."
 				/>
 
-				{filteredServices.map(singleCategory => 
+				{filteredServices.map(singleCategory =>
 					singleCategory.items.length > 0 ? (
 						<div key={singleCategory.category}>
 							<h3>{singleCategory.category}</h3>

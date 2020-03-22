@@ -1,12 +1,10 @@
 import React from 'react';
 import API from '../API';
 import { Route, Redirect } from 'react-router-dom';
-
 import Header from './Header';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 import MainComp from './MainComp';
-// import Upload from '../components/Upload'
 import AddNewRequest from '../components/AddNewRequest';
 import Services from '../containers/Services';
 import RequestDetails from '../components/requestDetails';
@@ -14,16 +12,17 @@ import Bookings from './Bookings';
 import SignUpHandyMan from '../components/SignUpHandyMan';
 import LoginHandy from '../components/LoginHandy';
 import Footer from '../containers/Footer';
-import Button from '@material-ui/core/Button';
+
+
 class Welcome extends React.Component {
   state = {
     user: null,
     users: [],
     username: null,
-
+    
+    handyman: null,
     handymen: [],
     handyname: null,
-    handyman: null,
 
     services: [],
   };
@@ -54,15 +53,11 @@ class Welcome extends React.Component {
   };
 
   getUsers = () => {
-    console.log('getusers');
-
-    API.getUsers().then((users) => this.setState({ users }));
+     API.getUsers().then((users) => this.setState({ users }));
   };
 
   //services
   getServices = () => {
-    console.log('getservices');
-
     API.getServices().then((services) => this.setState({ services }));
   };
 
@@ -104,73 +99,68 @@ class Welcome extends React.Component {
   }
 
   render() {
-    console.log('2');
     return (
-      //   const { services} = this.state
-      <div>
-        <h1>{`Welcome ${localStorage.name}. You are logged in as ${
-          localStorage.role === 'user'
-            ? localStorage.username
-            : localStorage.handyman
-        }`}</h1>
-        <Button variant='contained' color='primary'>
-          Hello World
-        </Button>
-        <Header
-          username={this.state.username}
-          handyname={this.state.handyname}
-          logOut={this.logOut}
-        />
-        {(this.state.username || this.state.handyname) && <Redirect to='/' />}
-        <Route exact path='/'>
-          <MainComp />
-        </Route>
-        <Route
-          exact
-          path='/login'
-          component={() => <Login logIn={this.logIn} />}
-        />
-        <Route
-          exact
-          path='/signup'
-          component={() => <SignUp logIn={this.logIn} />}
-        />
-        {/* <Route exact path="/upload" component={() => <Upload />}/> */}
-        <Route
-          exact
-          path='/booking/services'
-          component={() => <Services services={this.state.services} />}
-        />
-        <Route
-          exact
-          path='/booking/services/:id'
-          component={() => <AddNewRequest />}
-        />
-        <Route
-          exact
-          path='/bookings/:id'
-          component={() => <RequestDetails logIn={this.logIn} />}
-        />
-        <Route
-          exact
-          path='/bookings'
-          component={() => <Bookings logIn={this.logIn} />}
-        />
-        <Route
-          exact
-          path='/signup-handy'
-          component={() => <SignUpHandyMan logInHandy={this.logInHandy} />}
-        />
-        <Route
-          exact
-          path='/login-handyman'
-          component={() => <LoginHandy logInHandy={this.logInHandy} />}
-        />
-
-        <span>Click 👇🏻 if you are a HandyMan 👷🏽‍♂️</span>
-        <Footer />
-      </div>
-    );
+			<div>
+				{localStorage.token && (
+					<h1>{`Welcome ${localStorage.name}. You are logged in as ${
+						localStorage.role === 'user'
+							? localStorage.username
+							: localStorage.handyman
+					}`}</h1>
+				)}
+				<Header
+					username={this.state.username}
+					handyname={this.state.handyname}
+					logOut={this.logOut}
+				/>
+				{(this.state.username || this.state.handyname) && <Redirect to="/" />}
+				<Route exact path="/">
+					<MainComp />
+				</Route>
+				<Route
+					exact
+					path="/login"
+					component={() => <Login logIn={this.logIn} />}
+				/>
+				<Route
+					exact
+					path="/signup"
+					component={() => <SignUp logIn={this.logIn} />}
+				/>
+				<Route
+					exact
+					path="/booking/services"
+					component={() => <Services services={this.state.services} />}
+				/>
+				<Route
+					exact
+					path="/booking/services/:id"
+					component={() => <AddNewRequest />}
+				/>
+				<Route
+					exact
+					path="/bookings/:id"
+					component={() => <RequestDetails logIn={this.logIn} />}
+				/>
+				<Route
+					exact
+					path="/bookings"
+					component={() => <Bookings logIn={this.logIn} />}
+				/>
+				<Route
+					exact
+					path="/signup-handy"
+					component={() => <SignUpHandyMan logInHandy={this.logInHandy} />}
+				/>
+				<Route
+					exact
+					path="/login-handyman"
+					component={() => <LoginHandy logInHandy={this.logInHandy} />}
+				/>
+				<span>Click 👇🏻 if you are a HandyMan 👷🏽‍♂️</span>
+				<Footer />
+			</div>
+		);
   }
 }
 

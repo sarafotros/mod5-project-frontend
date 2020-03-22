@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BigBannerImage from '../images/banner/bigBanner2.jpg';
+import BigBannerImage from '../images/banner/bigBanner3.jpg';
 import { Paper, Button } from '@material-ui/core';
 
 export default class BigBanner extends Component {
