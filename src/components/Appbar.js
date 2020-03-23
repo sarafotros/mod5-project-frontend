@@ -82,7 +82,6 @@ export default class Appbar extends Component {
                         Login
                       </Grid>
                       <Grid item>&nbsp;|&nbsp;</Grid>
-                      {/* &emsp; */}
                       <Grid item onClick={this.toggleSignupModal}>
                         Sign up
                       </Grid>

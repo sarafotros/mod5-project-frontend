@@ -1,7 +1,7 @@
 import React from 'react';
 import Service from '../components/Service';
 import API from '../API';
-
+import { withRouter } from 'react-router-dom';
 
 
 class Services extends React.Component {
@@ -12,11 +12,19 @@ class Services extends React.Component {
 	};
 
 	getServices = () => {
+		const { match } = this.props
+		const selectedCategory = match.params.category 
+
 		API.getServices().then(services => {
 			const servicesByCategory = [
 				// { category: 'painting', items: [a, b, c] },
 				// { category: 'cleaning', items: [a, b, c] }
 			];
+			if (selectedCategory) {
+				services = services.filter(
+					service => service.category === selectedCategory
+				); 
+			}
 			for (let i = 0; i < services.length; i += 1) {
 				const currentItemCategory = servicesByCategory.find(
 					singleService => singleService.category === services[i].category
@@ -91,4 +99,4 @@ class Services extends React.Component {
 	}
 }
  
-export default Services;
+export default withRouter(Services);

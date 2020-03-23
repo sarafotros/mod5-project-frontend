@@ -11,7 +11,7 @@ class Bookings extends React.Component {
 
 	getRequests = () => {
         API.getRequests().then(requests => this.setState({
-            requests: (localStorage.role === 'user') ? (requests.filter(req => req.user_id === localStorage.user_id)) : requests
+            requests: (localStorage.role === 'user') ? (requests.filter(req => req.user_id == localStorage.user_id)) : requests
         }));
 	};
 
@@ -28,7 +28,6 @@ class Bookings extends React.Component {
 
     render() {
         const { requests } = this.state
-        console.log('requests ', requests)
         if (!localStorage.token) { return <Redirect to="/" />}
         return requests ? (
                 <div className="bookings">

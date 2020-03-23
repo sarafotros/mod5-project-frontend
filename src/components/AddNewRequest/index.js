@@ -4,7 +4,7 @@ import TimePicker from './timePicker';
 import LocationForm from './location';
 import UploadData from './Upload';
 import * as moment from 'moment';
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 const URLUpload = 'http://localhost:3001/upload-photos';
 
@@ -113,7 +113,7 @@ class AddNewRequest extends React.Component {
 	formData.append('user_id', localStorage.user_id);
 	formData.append('service_id', JSON.parse(localStorage.selectedService).id);
 
-		return fetch(URLUpload, {
+	 return fetch(URLUpload, {
 			method: 'POST',
 			headers: {},
 			body: formData
@@ -125,7 +125,6 @@ class AddNewRequest extends React.Component {
 	};
 
 	render() {
-		console.log('adding new request');
 		const {
 			currentLevel,
 			coordinates,
@@ -137,7 +136,7 @@ class AddNewRequest extends React.Component {
       		image,
       		imageName
 		} = this.state;
-		console.log('selectedDay', selectedDay);
+		
 		return (
 			<div>
 				{levels[currentLevel].value === 'DESCRIPTION' && <Description />}
@@ -173,22 +172,24 @@ class AddNewRequest extends React.Component {
 						changeImage={this.changeImage}
 					/>
 				)}
-				<div>
-					<button disabled={currentLevel === 0} onClick={this.goPrevPage}>
-						Back
+				{localStorage.role === 'user' && (
+					<div>
+						<button disabled={currentLevel === 0} onClick={this.goPrevPage}>
+							Back
 					</button>
-					{currentLevel !== levels.length - 1 && (
-						<button
-							disabled={currentLevel === levels.length - 1}
-							onClick={this.goNextPage}
-						>
-							Next
-						</button>
-					)}
-					{currentLevel === levels.length - 1 && (
-						<button onClick={this.submitRequest}>Submit</button>
-					)}
-				</div>
+						{currentLevel !== levels.length - 1 && (
+							<button
+								disabled={currentLevel === levels.length - 1}
+								onClick={this.goNextPage}
+							>
+								Next
+							</button>
+						)}
+						{currentLevel === levels.length - 1 && (
+							<button onClick={this.submitRequest}>Submit</button>
+						)}
+					</div>)}
+				<Link to='/services'>Back to All Services</Link>
 			</div>
 		);
 	}

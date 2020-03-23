@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import BigBannerImage from '../images/banner/bigBanner3.jpg';
-import { Paper, Button } from '@material-ui/core';
+import { Paper, Button, Typography } from '@material-ui/core';
 
 export default class BigBanner extends Component {
   render() {
     return (
-      <Paper className='bigBanner'>
-        <img src={BigBannerImage} alt='Big Banner' className='bigBanner__img' />
-        <div className='bigBanner__text'>
-          <h1>Handy App</h1>
-          <h3>get your works done.</h3>
-          <Button variant='outlined' color='primary'>
-            Add new request
-          </Button>
-        </div>
-      </Paper>
-    );
+			<Paper className="bigBanner">
+				<img src={BigBannerImage} alt="Big Banner" className="bigBanner__img" />
+				<div className="bigBanner__text">
+					<Typography variant="h1">Handy App</Typography>
+					<Typography variant="h4">Get What You need done!</Typography>
+					<Button variant="outlined" color="primary">
+						Add new request
+					</Button>
+				</div>
+			</Paper>
+		);
   }
 }

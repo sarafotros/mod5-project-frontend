@@ -17,15 +17,19 @@ function MainRouter() {
 				<Route exact path="/services">
 					<Services />
 				</Route>
-				<Route exact path="/services/:id">
+				<Route exact path="/services/:category">
+					<Services />
+				</Route>
+				<Route exact path="/services/:category/:service">
 					<AddNewRequest />
 				</Route>
-				<Route exact path="/bookings/:id" >
-                    <RequestDetails  />
-                </Route>
-                <Route exact path="/bookings">
-                    <Bookings />
+				<Route exact path="/bookings/:id">
+					<RequestDetails />
 				</Route>
+				<Route exact path="/bookings">
+					<Bookings />
+				</Route>
+				
 			</>
 		);
 }

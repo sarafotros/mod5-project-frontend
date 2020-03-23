@@ -1,52 +1,57 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
 import HomepageIcon from '@material-ui/icons/Home';
-import NewRequestIcon from '@material-ui/icons/NoteAdd';
+// import NewRequestIcon from '@material-ui/icons/NoteAdd';
 import AllRequestsIcon from '@material-ui/icons/FormatPaint';
 import ServicesIcon from '@material-ui/icons/ViewList';
 import ContactUsIcon from '@material-ui/icons/ContactMail';
 import MyContractIcon from '@material-ui/icons/Work';
 import MyRequsetDetailIcon from '@material-ui/icons/ShoppingBasket';
 import ServiceIcon from '@material-ui/icons/Store';
+import useStyles from '../styles/components/DrawerMenu';
 
-export default class DrawerMenu extends Component {
-  render() {
+export default function DrawerMenu () {
+	const checkActive = (match, location) => {
+		//some additional logic to verify you are in the home URI
+		if (!location) return false;
+		const { pathname } = location;
+		console.log(pathname);
+		return pathname === '/';
+	};
+
+	const classes = useStyles();
     if (localStorage.role === 'user') {
 			return (
 				<List>
-					<Link to="/">
+					<NavLink
+						to="/"
+						activeClassName={classes.activeMenuItem}
+						isActive={checkActive}
+					>
 						<ListItem button>
 							<ListItemIcon>
 								<HomepageIcon />
 							</ListItemIcon>
 							<ListItemText primary={'Home'} />
 						</ListItem>
-					</Link>
-					<Link to="/services">
+					</NavLink>
+					<NavLink to="/services" activeClassName={classes.activeMenuItem}>
 						<ListItem button>
 							<ListItemIcon>
 								<ServiceIcon />
 							</ListItemIcon>
 							<ListItemText primary={'All Services'} />
 						</ListItem>
-					</Link>
-					{/* <Link to="/services/:id">
-						<ListItem button>
-							<ListItemIcon>
-								<NewRequestIcon />
-							</ListItemIcon>
-							<ListItemText primary={'New request'} />
-						</ListItem>
-					</Link> */}
-					<Link to="/bookings">
+					</NavLink>
+					<NavLink to="/bookings" activeClassName={classes.activeMenuItem}>
 						<ListItem button>
 							<ListItemIcon>
 								<MyRequsetDetailIcon />
 							</ListItemIcon>
 							<ListItemText primary={'My bookings'} />
 						</ListItem>
-					</Link>
+					</NavLink>
 					<ListItem button>
 						<ListItemIcon>
 							<ContactUsIcon />
@@ -58,30 +63,34 @@ export default class DrawerMenu extends Component {
 		} else if (localStorage.role === 'handyman') {
 			return (
 				<List>
-					<Link to="/">
+					<NavLink
+						to="/"
+						activeClassName={classes.activeMenuItem}
+						isActive={checkActive}
+					>
 						<ListItem button>
 							<ListItemIcon>
 								<HomepageIcon />
 							</ListItemIcon>
 							<ListItemText primary={'Home'} />
 						</ListItem>
-					</Link>
-					<Link to="/services">
+					</NavLink>
+					<NavLink to="/services" activeClassName={classes.activeMenuItem}>
 						<ListItem button>
 							<ListItemIcon>
 								<MyContractIcon />
 							</ListItemIcon>
 							<ListItemText primary={'All Services'} />
 						</ListItem>
-					</Link>
-					<Link to="/bookings">
+					</NavLink>
+					<NavLink to="/bookings" activeClassName={classes.activeMenuItem}>
 						<ListItem button>
 							<ListItemIcon>
 								<ServicesIcon />
 							</ListItemIcon>
 							<ListItemText primary={'All requests'} />
 						</ListItem>
-					</Link>
+					</NavLink>
 					<ListItem button>
 						<ListItemIcon>
 							<AllRequestsIcon />
@@ -98,22 +107,26 @@ export default class DrawerMenu extends Component {
 			);
     } return (
 				<List>
-					<Link to="/">
+					<NavLink
+						to="/"
+						activeClassName={classes.activeMenuItem}
+						isActive={checkActive}
+					>
 						<ListItem button>
 							<ListItemIcon>
 								<HomepageIcon />
 							</ListItemIcon>
 							<ListItemText primary={'Home'} />
 						</ListItem>
-					</Link>
-					<Link to="/services">
+					</NavLink>
+					<NavLink to="/services" activeClassName={classes.activeMenuItem}>
 						<ListItem button>
 							<ListItemIcon>
 								<ServiceIcon />
 							</ListItemIcon>
 							<ListItemText primary={'All Services'} />
 						</ListItem>
-					</Link>
+					</NavLink>
 					<ListItem button>
 						<ListItemIcon>
 							<ContactUsIcon />
@@ -122,5 +135,5 @@ export default class DrawerMenu extends Component {
 					</ListItem>
 				</List>
 			);
-  }
+  
 }
