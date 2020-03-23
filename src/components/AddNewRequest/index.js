@@ -4,27 +4,32 @@ import TimePicker from './timePicker';
 import LocationForm from './location';
 import UploadData from './Upload';
 import * as moment from 'moment';
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import styles from '../../styles/components/AddNewRequest';
+import { Button } from '@material-ui/core';
+import NextIcon from '@material-ui/icons/KeyboardArrowRight';
+import BackIcon from '@material-ui/icons/KeyboardArrowLeft';
 
 const URLUpload = 'http://localhost:3001/upload-photos';
 
 const levels = [
-  {
-    title: 'description',
-    value: 'DESCRIPTION',
-  },
-  {
-    title: 'timePicker',
-    value: 'TIME_PICKER',
-  },
-  {
-    title: 'location',
-    value: 'LOCATION_FORM',
-  },
-  {
-    title: 'upload data',
-    value: 'UPLOAD_DATA',
-  },
+	{
+		title: 'description',
+		value: 'DESCRIPTION'
+	},
+	{
+		title: 'timePicker',
+		value: 'TIME_PICKER'
+	},
+	{
+		title: 'location',
+		value: 'LOCATION_FORM'
+	},
+	{
+		title: 'upload data',
+		value: 'UPLOAD_DATA'
+	}
 ];
 
 class AddNewRequest extends React.Component {
@@ -33,11 +38,11 @@ class AddNewRequest extends React.Component {
 		coordinates: { lng: -0.0874836, lat: 51.5202116 },
 		number: '',
 		postCode: '',
-		selectedHour: '12:00',
-		selectedDay: moment().format('YYYY-MM-DD'),
+		selectedHour: new Date(),
+		selectedDay: new Date(),
 		description: '',
-    image: '',
-    imageName:''
+		image: '',
+		imageName: ''
 	};
 
 	// taking states from child components
@@ -59,12 +64,14 @@ class AddNewRequest extends React.Component {
 	};
 	changeSelectedDay = event => {
 		this.setState({
-			selectedDay: event.target.value
+			selectedDay: event
 		});
 	};
 	changeSelectedHour = event => {
+		console.log(event);
+		
 		this.setState({
-			selectedHour: event.target.value
+			selectedHour: event
 		});
 	};
 
@@ -75,10 +82,10 @@ class AddNewRequest extends React.Component {
 	};
 
 	changeImage = event => {
-    console.log(event.target.files)
-    this.setState({
-      image: event.target.files[0],
-      imageName: event.target.value
+		console.log(event.target.files);
+		this.setState({
+			image: event.target.files[0],
+			imageName: event.target.value
 		});
 	};
 
@@ -93,9 +100,8 @@ class AddNewRequest extends React.Component {
 		this.setState({ currentLevel: currentLevel - 1 });
 	};
 
-
-  submitRequest = () => {
-    const {
+	submitRequest = () => {
+		const {
 			image,
 			description,
 			selectedDay,
@@ -103,25 +109,26 @@ class AddNewRequest extends React.Component {
 			number,
 			postCode
 		} = this.state;
-    const formData = new FormData();
-    formData.append('photo', image)
-    formData.append('description', description);
-    formData.append('date', selectedDay);
-    formData.append('time', selectedHour);
-    formData.append('number', number);
-    formData.append('post_code', postCode);
-	formData.append('user_id', localStorage.user_id);
-	formData.append('service_id', JSON.parse(localStorage.selectedService).id);
+		const formData = new FormData();
+		formData.append('photo', image);
+		formData.append('description', description);
+		formData.append('date', selectedDay);
+		formData.append('time', selectedHour);
+		formData.append('number', number);
+		formData.append('post_code', postCode);
+		formData.append('user_id', localStorage.user_id);
+		formData.append('service_id', JSON.parse(localStorage.selectedService).id);
 
-	 return fetch(URLUpload, {
+		return fetch(URLUpload, {
 			method: 'POST',
 			headers: {},
 			body: formData
-		}).then(resp => resp.json())
-      	.then(data => {
-         console.log(data.image_url);
-         this.props.history.push('/bookings/' + data.request.id );
-      });
+		})
+			.then(resp => resp.json())
+			.then(data => {
+				console.log(data.image_url);
+				this.props.history.push('/bookings/' + data.request.id);
+			});
 	};
 
 	render() {
@@ -133,12 +140,13 @@ class AddNewRequest extends React.Component {
 			selectedDay,
 			selectedHour,
 			description,
-      		image,
-      		imageName
+			image,
+			imageName
 		} = this.state;
-		
+		const { classes } = this.props;
+
 		return (
-			<div>
+			<div className={classes.AddNewRequestBox}>
 				{levels[currentLevel].value === 'DESCRIPTION' && <Description />}
 				{levels[currentLevel].value === 'TIME_PICKER' && (
 					<TimePicker
@@ -166,33 +174,48 @@ class AddNewRequest extends React.Component {
 				{levels[currentLevel].value === 'UPLOAD_DATA' && (
 					<UploadData
 						description={description}
-            			image={image}
-            			imageName={imageName}
+						image={image}
+						imageName={imageName}
 						changePhotoDescription={this.changePhotoDescription}
 						changeImage={this.changeImage}
 					/>
 				)}
 				{localStorage.role === 'user' && (
-					<div>
-						<button disabled={currentLevel === 0} onClick={this.goPrevPage}>
+					<div className={classes.buttonGroup}>
+						<Button
+							disabled={currentLevel === 0}
+							onClick={this.goPrevPage}
+							variant="contained"
+							color="primary"
+							className={classes.button}
+							startIcon={<BackIcon />}
+						>
 							Back
-					</button>
+						</Button>
 						{currentLevel !== levels.length - 1 && (
-							<button
+							<Button
 								disabled={currentLevel === levels.length - 1}
 								onClick={this.goNextPage}
+								variant="contained"
+								color="primary"
+								className={classes.button}
+								endIcon={<NextIcon />}
 							>
 								Next
-							</button>
+							</Button>
 						)}
 						{currentLevel === levels.length - 1 && (
 							<button onClick={this.submitRequest}>Submit</button>
 						)}
-					</div>)}
-				<Link to='/services'>Back to All Services</Link>
+					</div>
+				)}
+				<Link className={classes.AddNewRequestLink} to="/services">
+					Back to All Services
+				</Link>
 			</div>
 		);
 	}
 }
 
-export default withRouter(AddNewRequest);
+const AddNewRequestWithRouter = withRouter(AddNewRequest);
+export default withStyles(styles)(AddNewRequestWithRouter);

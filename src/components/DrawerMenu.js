@@ -11,7 +11,8 @@ import MyRequsetDetailIcon from '@material-ui/icons/ShoppingBasket';
 import ServiceIcon from '@material-ui/icons/Store';
 import useStyles from '../styles/components/DrawerMenu';
 
-export default function DrawerMenu () {
+export default function DrawerMenu() {
+	
 	const checkActive = (match, location) => {
 		//some additional logic to verify you are in the home URI
 		if (!location) return false;

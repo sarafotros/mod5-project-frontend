@@ -2,6 +2,10 @@ import React from 'react';
 import Service from '../components/Service';
 import API from '../API';
 import { withRouter } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import styles from '../styles/containers/Services'
+import { Typography, TextField, InputAdornment } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 class Services extends React.Component {
@@ -73,18 +77,29 @@ class Services extends React.Component {
 
 	render() {
 		const { filteredServices } = this.state;
+		const { classes } = this.props;
 		return (
 			<div className="services">
-				<input
-					onChange={e => this.searchServices(e.target.value)}
-					placeholder="Search..."
-				/>
-
+				<div className={classes.servicesHeader}>
+					<Typography variant="h3">All Services</Typography>
+					<TextField
+						onChange={e => this.searchServices(e.target.value)}
+						className={classes.margin}
+						label="Search"
+						InputProps={{
+							startAdornment: (
+								<InputAdornment position="start">
+									<SearchIcon/>
+								</InputAdornment>
+							)
+						}}
+					/>	
+				</div>
 				{filteredServices.map(singleCategory =>
 					singleCategory.items.length > 0 ? (
 						<div key={singleCategory.category}>
-							<h3>{singleCategory.category}</h3>
-							<div className="services__categoryServices">
+							<Typography className={classes.servicesCategoryText} variant="h4">{singleCategory.category}</Typography>
+							<div className={classes.services__categoryServices}>
 								{singleCategory.items.map(singleService => {
 									return (
 										<Service key={singleService.id} service={singleService} />
@@ -98,5 +113,6 @@ class Services extends React.Component {
 		);
 	}
 }
- 
-export default withRouter(Services);
+
+const ServicesWithRouter = withRouter(Services)
+export default withStyles(styles)(ServicesWithRouter);

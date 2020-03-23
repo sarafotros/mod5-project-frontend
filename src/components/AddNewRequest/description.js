@@ -1,30 +1,39 @@
 import React, { Component } from 'react';
+import styles from '../../styles/components/AddNewRequest/description';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
-export default class Description extends Component {
+
+ class Description extends Component {
   render() {
     const service = JSON.parse(localStorage.getItem('selectedService'));
-    console.log('service', service);
+    const { classes } = this.props
     return (
-      <div>
-        <h3>{service.name} </h3>{' '}
-        <div className='description__mainBox'>
-          <div>
-            <img
-              src={service.image}
-              className='description__image'
-              alt={service.name}
-            />
-          </div>
-          <p className='description__details'>{service.description}</p>
-        </div>
-        <div>
-          <h4>
-            <span className='description_priceLabel'>price: </span>
-            <span className='description_currency'>£</span>
-            {service.price}
-          </h4>
-        </div>
-      </div>
-    );
+			<div>
+				<Typography className={classes.description__Title} variant="h3">
+					{service.name}
+				</Typography>
+				<div className={classes.description__mainBox}>
+					<div>
+						<img
+							src={service.image}
+							className={classes.description__image}
+							alt={service.name}
+						/>
+					</div>
+					<Typography variant="body1" className={classes.description__details}>
+						{service.description}
+					</Typography>
+				</div>
+				<div className={classes.description_price}>
+					<Typography variant="h4">
+						<span className={classes.description_priceLabel}>price: </span>
+						<span className={classes.description_currency}>£</span>
+						{service.price}
+					</Typography>
+				</div>
+			</div>
+		);
   }
 }
+export default withStyles(styles)(Description);

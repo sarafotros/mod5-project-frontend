@@ -1,7 +1,4 @@
-@import './styles/components/Service.css';
-@import './styles/containers/Services.css';
-@import './styles/components/AddNewRequest/timePicker.css';
-@import './styles/components/AddNewRequest/description.css';
+
 @import './styles/components/AddNewRequest/location.css';
 @import './styles/containers/Bookings.css';
 @import './styles/components/BigBanner.css';
