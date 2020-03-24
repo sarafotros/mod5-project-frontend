@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import styles from '../../styles/components/AddNewRequest/location'
-import {
-  GoogleMap,
-  Marker,
-  withGoogleMap,
-  withScriptjs,
-} from 'react-google-maps';
 import { TextField } from '@material-ui/core';
+import GoogleMapReact from 'google-map-react';
+import MarkerIcon from '@material-ui/icons/LocationOn';
 
 
-// let APIkey = AIzaSyAqaghXFHfeXGeqDFRynev2UoLS9HXyibY;
-
-
-
+let APIkey = 'AIzaSyAqaghXFHfeXGeqDFRynev2UoLS9HXyibY';
 
 class LocationForm extends Component {
 
-  render() {
-    const {
-      coordinates,
-      number,
-      postCode,
-      changeNumber,
-      changePostCode,
-      changeCoordinates,
-      classes
-    } = this.props;
-    return (
+	onMapClicked = newCenter => {
+		console.log(newCenter);
+		this.props.changeCenter(newCenter);
+	};
+
+	render() {
+		const {
+			center,
+			zoom,
+			number,
+			postCode,
+			changeNumber,
+			changePostCode,
+			classes
+		} = this.props;
+
+		return (
 			<div className={classes.LocationFormBox}>
 				<div className={classes.LocationFormInput}>
 					<TextField
@@ -45,24 +44,21 @@ class LocationForm extends Component {
 						onChange={e => changePostCode(e.target.value)}
 					/>
 				</div>
-				<div>
-					<GoogleMap
-						defaultZoom={8}
-						defaultCenter={coordinates}
-						onClick={event =>
-							changeCoordinates({
-								lat: event.latLng.lat(),
-								lng: event.latLng.lng()
-							})
-						}
+
+				<div style={{ height: '400px', width: '50%' }}>
+					<GoogleMapReact
+						bootstrapURLKeys={{ key: APIkey }}
+						center={center}
+						zoom={zoom}
+						onClick={this.onMapClicked}
 					>
-						<Marker position={coordinates} />
-					</GoogleMap>
+					<>
+						<MarkerIcon />
+					</>
+					</GoogleMapReact>
 				</div>
 			</div>
 		);
-  }
+	}
 }
-
-const LocationFormWithMap = withScriptjs(withGoogleMap(LocationForm));
-export default withStyles(styles)(LocationFormWithMap);
+export default withStyles(styles)(LocationForm);

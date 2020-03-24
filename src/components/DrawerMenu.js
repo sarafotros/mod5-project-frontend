@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
 import HomepageIcon from '@material-ui/icons/Home';
-// import NewRequestIcon from '@material-ui/icons/NoteAdd';
 import AllRequestsIcon from '@material-ui/icons/FormatPaint';
 import ServicesIcon from '@material-ui/icons/ViewList';
 import ContactUsIcon from '@material-ui/icons/ContactMail';
@@ -53,12 +52,14 @@ export default function DrawerMenu() {
 							<ListItemText primary={'My bookings'} />
 						</ListItem>
 					</NavLink>
+					<NavLink to="/contact-us" activeClassName={classes.activeMenuItem}>
 					<ListItem button>
 						<ListItemIcon>
 							<ContactUsIcon />
 						</ListItemIcon>
 						<ListItemText primary={'Contact us'} />
 					</ListItem>
+					</NavLink>
 				</List>
 			);
 		} else if (localStorage.role === 'handyman') {
@@ -98,12 +99,14 @@ export default function DrawerMenu() {
 						</ListItemIcon>
 						<ListItemText primary={'My contracts'} />
 					</ListItem>
-					<ListItem button>
-						<ListItemIcon>
-							<ContactUsIcon />
-						</ListItemIcon>
-						<ListItemText primary={'Contact us'} />
-					</ListItem>
+					<NavLink to="/contact-us" activeClassName={classes.activeMenuItem}>
+						<ListItem button>
+							<ListItemIcon>
+								<ContactUsIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Contact us'} />
+						</ListItem>
+					</NavLink>
 				</List>
 			);
     } return (
@@ -128,12 +131,14 @@ export default function DrawerMenu() {
 							<ListItemText primary={'All Services'} />
 						</ListItem>
 					</NavLink>
-					<ListItem button>
-						<ListItemIcon>
-							<ContactUsIcon />
-						</ListItemIcon>
-						<ListItemText primary={'Contact us'} />
-					</ListItem>
+					<NavLink to="/contact-us" activeClassName={classes.activeMenuItem}>
+						<ListItem button>
+							<ListItemIcon>
+								<ContactUsIcon />
+							</ListItemIcon>
+							<ListItemText primary={'Contact us'} />
+						</ListItem>
+					</NavLink>
 				</List>
 			);
   
