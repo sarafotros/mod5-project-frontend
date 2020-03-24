@@ -1,55 +1,56 @@
 import React, { Component } from 'react';
-// import WheelPicker from 'react-simple-wheel-picker';
-import * as moment from 'moment';
+import 'date-fns';
+import { withStyles } from '@material-ui/core/styles';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+	MuiPickersUtilsProvider,
+	KeyboardTimePicker,
+	KeyboardDatePicker
+} from '@material-ui/pickers';
+import styles from '../../styles/components/AddNewRequest/timePicker'
 
-export default class TimerPicker extends Component {
-  state = {
-    dates: [],
-  };
+class TimerPicker extends Component {
+	state = {
+		dates: []
+	};
 
-  // componentDidMount() {
-  // 	this.setState({
-  // 		dates: mockData.dates.map(date => {
-  // 			return {
-  // 				id: date.id,
-  // 				value: moment(date.value).format('MMMM Do')
-  // 			};
-  // 		})
-  // 	});
-  // }
-
-  render() {
+	render() {
     const {
-      selectedDay,
-      selectedHour,
-      changeSelectedDay,
-      changeSelectedHour,
-    } = this.props;
-    return (
-      <div className='timePicker'>
-        <div className='timePicker__dayPicker'>
-          <label>Select a Date:</label>
-          <input
-            type='date'
-            name='date'
-            value={selectedDay}
-            onChange={changeSelectedDay}
-            // onChange={(event)=>changeSelectedDay(event)}
-          />
-        </div>
-        <div className='timePicker__hoursPicker'>
-          <input
-            type='time'
-            name='app'
-            min='09:00'
-            max='18:00'
-            required
-            value={selectedHour}
-            onChange={changeSelectedHour}
-          />
-          <small>Booking hours are 9am to 6pm</small>
-        </div>
-      </div>
-    );
-  }
+      classes,
+			selectedDay,
+			selectedHour,
+			changeSelectedDay,
+			changeSelectedHour
+		} = this.props;
+		return (
+			<MuiPickersUtilsProvider utils={DateFnsUtils}>
+				<div className={classes.Pickers}>
+					<div className={classes.DatePicker}>
+						<KeyboardDatePicker
+							margin="normal"
+							label="Select a Date"
+							format="MM/dd/yyyy"
+							value={selectedDay}
+							onChange={changeSelectedDay}
+							KeyboardButtonProps={{
+								'aria-label': 'change date'
+							}}
+						/>
+					</div>
+          <div className={classes.timePicker}>
+						<KeyboardTimePicker
+							margin="normal"
+							label="Time picker"
+							value={selectedHour}
+							onChange={changeSelectedHour}
+							KeyboardButtonProps={{
+								'aria-label': 'change time'
+              }}
+						/>
+					</div>
+				</div>
+			</MuiPickersUtilsProvider>
+		);
+	}
 }
+export default withStyles(styles)(TimerPicker);

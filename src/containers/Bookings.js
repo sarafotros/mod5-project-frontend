@@ -28,7 +28,6 @@ class Bookings extends React.Component {
 
     render() {
         const { requests } = this.state
-        console.log('requests ', requests)
         if (!localStorage.token) { return <Redirect to="/" />}
         return requests ? (
                 <div className="bookings">

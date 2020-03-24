@@ -22,7 +22,6 @@ class Login extends Component {
 		API.logingFetch(loginData).then(json => {
 			console.log(json)
 			if (json.errorCode === 1001) {
-				console.log('user is invalid');
 				this.setState({
 					userIsInvalid: true,
 					invalidMessage: json.message
