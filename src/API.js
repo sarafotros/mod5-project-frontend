@@ -1,3 +1,4 @@
+// const baseUrl = 'https://handy-app-sf.herokuapp.com/';
 const baseUrl = 'http://localhost:3001';
 
 const userUrl = baseUrl + '/users';
@@ -14,9 +15,15 @@ const signupHandyURL = baseUrl + '/signup_handy';
 
 const get = (url) => (fetch(url, { headers: { 'Authorization': localStorage.token } }).then(resp => resp.json()));
 
-const getToken= (url, token) =>(
+const getToken = (url, token) =>(
 	fetch(url, { headers: { 'Authorization': token } }).then(resp => resp.json())
 )
+
+const deleteAPI = (url) => (fetch(url,
+	{ method: 'DELETE', headers: { 'Authorization': localStorage.token } })
+	.then(resp => resp.json())
+) 
+
 
 const post = (url, obj) => {
 	const configObject = {
@@ -40,6 +47,8 @@ const getHandyman = () => get(handymanUrl);
 const getRequestDetails = (id) => get(urlRequest + id)
 
 const getRequests = () => get(urlRequest);
+
+const removeRequest = id => deleteAPI(urlRequest + id);
 
 //user sign in + sign up + validate
 const logingFetch = (body) => {
@@ -69,6 +78,8 @@ const signupHandy = body => {
 	return post(signupHandyURL, body).then(resp => resp.json());
 };
 
+
+
 // API object
 export default {
 	getUsers,
@@ -81,6 +92,7 @@ export default {
 	getHandyman,
 	logingHandyFetch,
 	validateHandy,
-	signupHandy
+	signupHandy,
+	removeRequest
 };
 

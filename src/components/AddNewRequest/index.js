@@ -12,6 +12,7 @@ import NextIcon from '@material-ui/icons/KeyboardArrowRight';
 import BackIcon from '@material-ui/icons/KeyboardArrowLeft';
 import SubmitIcon from '@material-ui/icons/Done';
 
+// const URLUpload = 'https://handy-app-sf.herokuapp.com/upload-photos';
 const URLUpload = 'http://localhost:3001/upload-photos';
 
 const levels = [
@@ -36,7 +37,8 @@ const levels = [
 class AddNewRequest extends React.Component {
 	state = {
 		currentLevel: 0,
-		coordinates: { lng: -0.0874836, lat: 51.5202116 },
+		center: { lng: -0.0874836, lat: 51.5202116 },
+		zoom: 11,
 		number: '',
 		postCode: '',
 		selectedHour: new Date(),
@@ -47,9 +49,9 @@ class AddNewRequest extends React.Component {
 	};
 
 	// taking states from child components
-	changeCoordinates = newCoordinates => {
+	changeCenter = newCenter => {
 		this.setState({
-			coordinates: newCoordinates
+			center: { lng: newCenter.lng, lat:newCenter.lat }
 		});
 	};
 
@@ -115,7 +117,7 @@ class AddNewRequest extends React.Component {
 		formData.append('photo', image);
 		formData.append('description', description);
 		formData.append('date', selectedDay);
-		formData.append('time', selectedHour);
+		formData.append('time', moment(selectedHour).format("hh:mm"));
 		formData.append('number', number);
 		formData.append('post_code', postCode);
 		formData.append('user_id', localStorage.user_id);
@@ -136,14 +138,15 @@ class AddNewRequest extends React.Component {
 	render() {
 		const {
 			currentLevel,
-			coordinates,
 			number,
 			postCode,
 			selectedDay,
 			selectedHour,
 			description,
 			image,
-			imageName
+			imageName,
+			zoom,
+			center 
 		} = this.state;
 		const { classes } = this.props;
 
@@ -162,15 +165,11 @@ class AddNewRequest extends React.Component {
 					<LocationForm
 						number={number}
 						postCode={postCode}
-						coordinates={coordinates}
-						changeCoordinates={this.changeCoordinates}
+						changeCenter={this.changeCenter}
 						changeNumber={this.changeNumber}
 						changePostCode={this.changePostCode}
-						// these props are required for using react-google-maps package
-						googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-						loadingElement={<div style={{ height: `300px`, width: '50%' }} />}
-						containerElement={<div style={{ height: `100%`, width: '50%' }} />}
-						mapElement={<div style={{ height: `300px`, width: '50%' }} />}
+						zoom={zoom}
+						center={center}
 					/>
 				)}
 				{levels[currentLevel].value === 'UPLOAD_DATA' && (
@@ -207,22 +206,21 @@ class AddNewRequest extends React.Component {
 							</Button>
 						)}
 						{currentLevel === levels.length - 1 && (
-								<Button
+							<Button
 								onClick={this.submitRequest}
 								variant="contained"
 								color="secondary"
 								className={classes.button}
-								endIcon={<SubmitIcon/>}
+								endIcon={<SubmitIcon />}
 							>
 								Submit
 							</Button>
-				
 						)}
 					</div>
 				)}
-				<Link className={classes.AddNewRequestLink} to="/services">
-					Back to All Services
-				</Link>
+				<div className={classes.AddNewRequestLink}>
+					<Link to="/services">Back to All Services</Link>
+				</div>
 			</div>
 		);
 	}

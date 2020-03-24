@@ -2,6 +2,7 @@ import React from 'react';
 import {  Route } from 'react-router-dom'
 import HomePage from './Homepage';
 import Services from './Services';
+import ContactUs from '../components/ContactUs'
 import AddNewRequest from '../components/AddNewRequest';
 import RequestDetails from '../components/requestDetails';
 import Bookings from './Bookings';
@@ -29,7 +30,9 @@ function MainRouter() {
 				<Route exact path="/bookings">
 					<Bookings />
 				</Route>
-				
+				<Route exact path="/contact-us">
+					<ContactUs />
+				</Route>
 			</>
 		);
 }

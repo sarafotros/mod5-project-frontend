@@ -79,37 +79,42 @@ class Services extends React.Component {
 		const { filteredServices } = this.state;
 		const { classes } = this.props;
 		return (
-			<div className="services">
-				<div className={classes.servicesHeader}>
-					<Typography variant="h3">All Services</Typography>
-					<TextField
-						onChange={e => this.searchServices(e.target.value)}
-						className={classes.margin}
-						label="Search"
-						InputProps={{
-							startAdornment: (
-								<InputAdornment position="start">
-									<SearchIcon/>
-								</InputAdornment>
-							)
-						}}
-					/>	
-				</div>
-				{filteredServices.map(singleCategory =>
-					singleCategory.items.length > 0 ? (
-						<div key={singleCategory.category}>
-							<Typography className={classes.servicesCategoryText} variant="h4">{singleCategory.category}</Typography>
-							<div className={classes.services__categoryServices}>
-								{singleCategory.items.map(singleService => {
-									return (
-										<Service key={singleService.id} service={singleService} />
-									);
-								})}
-							</div>
+		<>
+			{filteredServices?
+					<div className = "services">
+				< div className = { classes.servicesHeader } >
+			<Typography variant="h3">All Services</Typography>
+			<TextField
+				onChange={e => this.searchServices(e.target.value)}
+				className={classes.margin}
+				label="Search"
+				InputProps={{
+					startAdornment: (
+						<InputAdornment position="start">
+							<SearchIcon />
+						</InputAdornment>
+					)
+				}}
+			/>	
+				</div >
+		{
+			filteredServices.map(singleCategory =>
+				singleCategory.items.length > 0 ? (
+					<div key={singleCategory.category}>
+						<Typography className={classes.servicesCategoryText} variant="h4">{singleCategory.category}</Typography>
+						<div className={classes.services__categoryServices}>
+							{singleCategory.items.map(singleService => {
+								return (
+									<Service key={singleService.id} service={singleService} />
+								);
+							})}
 						</div>
-					) : null
-				)}
-			</div>
+					</div>
+				) : null
+			)
+		}
+					</div > : <Typography variant="h4">Loading...</Typography>}
+				</>
 		);
 	}
 }

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
 	CategoryBox: {
 		height: 130,
+		width: 150,
 		display: 'flex',
 		flexDirection: 'column',
 		margin: 12,
@@ -13,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 		alignItems: 'center'
 	},
 	categoryImg: {
-		height: 80,
+		height: 74,
 		width: 'auto',
 		marginBottom: 5
 	},

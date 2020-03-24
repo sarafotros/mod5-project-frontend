@@ -4,7 +4,7 @@ const styles = theme => ({
         height: 160,
 		backgroundColor: theme.palette.primary.light,
 		borderRadius: 8,
-		boxShadow: `3px 4px ${theme.palette.secondary.light}`,
+		boxShadow: `3px 4px ${theme.palette.primary.main}`,
 		margin: 8,
         cursor: 'pointer',
         padding: 10,
