@@ -1,64 +1,42 @@
 import React, { Component } from 'react';
-import API from '../../API';
-// const URLUpload = 'http://localhost:3001/upload-photos';
+import DropZone from '../DropZone';
+import { Typography, TextField } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import styles from '../../styles/components/AddNewRequest/Upload'
+
 
 class Upload extends Component {
   state = {
     description: '',
   };
 
-  // const getPhotoUrl = url => {
-  //     fetch(url, {
-  //         headers: {
-  //         Authorization: localStorage.token
-  //         }
-  // }).then(resp => resp.json())
-
-  // postPhoto = (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   formData.append('description', this.state.description);
-  //   formData.append('user_id', localStorage.user_id);
-  //   formData.append('service_id', 2);
-
-  //   return fetch(URLUpload, {
-  //     method: 'POST',
-  //     headers: {},
-  //     body: formData,
-  //   })
-  //     .then((resp) => resp.json())
-  //     .then((data) => console.log(data.image_url));
-  // };
-
-
-  handleSubmit;
+ 
 
   render() {
-    const {imageName , description , changeImage , changePhotoDescription } = this.props
+    const {imageName , description , changeImage , changePhotoDescription , classes} = this.props
     return (
 			<div>
-				<h2> Upload a Photo</h2>
+				<Typography className={classes.uploadTextTitle} variant="h2">
+					Upload a Photo
+				</Typography>
+				<DropZone onChange={changeImage} />
 
-				<label>Choose a file</label>
-				<br />
-				<input
-					type="file"
-					name="photo"
-					value={imageName}
-					onChange={changeImage}
-				/>
-				<br />
-				<label>More description about your request</label>
-				<br />
-				<textarea
+				<Typography variant="caption">{imageName}</Typography>
+        <br/>
+				<TextField
+					className={classes.uploadTextField}
+					variant="outlined"
 					name="description"
+					label="Description"
+					multiline
+					rows="4"
+					placeholder="More description about your request"
 					value={description}
 					onChange={changePhotoDescription}
 				/>
-				<br />
 			</div>
 		);
   }
 }
 
-export default Upload;
+export default withStyles(styles)(Upload);

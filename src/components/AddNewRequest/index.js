@@ -10,6 +10,7 @@ import styles from '../../styles/components/AddNewRequest';
 import { Button } from '@material-ui/core';
 import NextIcon from '@material-ui/icons/KeyboardArrowRight';
 import BackIcon from '@material-ui/icons/KeyboardArrowLeft';
+import SubmitIcon from '@material-ui/icons/Done';
 
 const URLUpload = 'http://localhost:3001/upload-photos';
 
@@ -81,11 +82,12 @@ class AddNewRequest extends React.Component {
 		});
 	};
 
-	changeImage = event => {
-		console.log(event.target.files);
+	changeImage = files => {
+		console.log(files[0]);
+		
 		this.setState({
-			image: event.target.files[0],
-			imageName: event.target.value
+			image: files[0],
+			imageName: files[0].name
 		});
 	};
 
@@ -205,7 +207,16 @@ class AddNewRequest extends React.Component {
 							</Button>
 						)}
 						{currentLevel === levels.length - 1 && (
-							<button onClick={this.submitRequest}>Submit</button>
+								<Button
+								onClick={this.submitRequest}
+								variant="contained"
+								color="secondary"
+								className={classes.button}
+								endIcon={<SubmitIcon/>}
+							>
+								Submit
+							</Button>
+				
 						)}
 					</div>
 				)}
