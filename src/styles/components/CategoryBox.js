@@ -3,11 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
 	CategoryBox: {
 		height: 130,
-		width: 150,
+		width: 140,
 		display: 'flex',
 		flexDirection: 'column',
-		margin: 12,
-		padding: 15,
+		margin: 5,
+		padding: 5,
 		border: `2px solid ${theme.palette.primary.light}`,
 		borderRadius: 6,
 		boxShadow: '4px 5px 5px #c1c0c0',

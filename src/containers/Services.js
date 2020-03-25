@@ -80,11 +80,11 @@ class Services extends React.Component {
 		const { classes } = this.props;
 		return (
 		<>
-			{filteredServices?
-					<div className = "services">
-				< div className = { classes.servicesHeader } >
-			<Typography variant="h3">All Services</Typography>
-			<TextField
+				{filteredServices ?
+				<div className = "services">
+				<div className = { classes.servicesHeader } >
+				<Typography variant="h3">All Services</Typography>
+				<TextField
 				onChange={e => this.searchServices(e.target.value)}
 				className={classes.margin}
 				label="Search"
@@ -94,11 +94,9 @@ class Services extends React.Component {
 							<SearchIcon />
 						</InputAdornment>
 					)
-				}}
-			/>	
-				</div >
-		{
-			filteredServices.map(singleCategory =>
+				}}/>	
+				</div>	
+			 {filteredServices.map(singleCategory =>
 				singleCategory.items.length > 0 ? (
 					<div key={singleCategory.category}>
 						<Typography className={classes.servicesCategoryText} variant="h4">{singleCategory.category}</Typography>
@@ -113,7 +111,7 @@ class Services extends React.Component {
 				) : null
 			)
 		}
-					</div > : <Typography variant="h4">Loading...</Typography>}
+				</div> : <Typography variant="h4">Loading...</Typography>}
 				</>
 		);
 	}

@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Button, Typography, Paper } from '@material-ui/core';
 import ShowIcon from '@material-ui/icons/EventNote';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AcceptIcon from '@material-ui/icons/ThumbUp';
 import AddRequestIcon from '@material-ui/icons/ShoppingCart';
 import styles from '../styles/containers/Bookings';
 
@@ -28,7 +29,12 @@ class Bookings extends React.Component {
                 this.getRequests()
             } 
         })
-    }
+	}
+	
+	editBooking = (id) => {
+		const obj = { handy_man_id:parseInt(localStorage.handyman_id), 'confirmed?': true }
+		API.editRequest( obj , id)
+	}
 
     componentDidMount() {
         // const { logIn } = this.props
@@ -56,7 +62,9 @@ class Bookings extends React.Component {
 											<Typography variant="body1">{req.date}</Typography>
 											<Typography variant="body1">{req.time}</Typography>
 										</div>
-										<div className={classes.booking__status}>Pending</div>
+										{req['confirmed?'] ?
+											<div className={classes.booking__statusTrue}>Confirmed</div>
+											: <div className={classes.booking__status}>Pending</div>}
 										<div className={classes.booking__btn}>
 											<Link to={'bookings/' + req.id}>
 												<Button
@@ -68,15 +76,29 @@ class Bookings extends React.Component {
 													Show Details
 												</Button>
 											</Link>
-											<Button
-												onClick={() => this.removeBooking(req.id)}
-												variant="contained"
-												color="secondary"
-												className={classes.button}
-												endIcon={<DeleteIcon />}
-											>
-												Delete
-											</Button>
+											{localStorage.role === 'user' && (
+												<Button
+													onClick={() => this.removeBooking(req.id)}
+													variant="contained"
+													color="secondary"
+													className={classes.button}
+													endIcon={<DeleteIcon />}
+												>
+													Delete
+												</Button>
+											)}
+											{localStorage.role === 'handyman' &&
+												localStorage.specialty === req.service.category && (
+													<Button
+														onClick={() => this.editBooking(req.id)}
+														variant="contained"
+														color="secondary"
+														className={classes.button}
+														endIcon={<AcceptIcon />}
+													>
+														Accept
+													</Button>
+												)}
 										</div>
 									</Paper>
 								))}

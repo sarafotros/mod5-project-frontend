@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import { withRouter, Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import styles from '../../styles/components/AddNewRequest';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import NextIcon from '@material-ui/icons/KeyboardArrowRight';
 import BackIcon from '@material-ui/icons/KeyboardArrowLeft';
 import SubmitIcon from '@material-ui/icons/Done';
@@ -217,6 +217,11 @@ class AddNewRequest extends React.Component {
 							</Button>
 						)}
 					</div>
+				)}
+				{!localStorage.token && (
+					<Typography variant="h5" className={classes.notUsersText}>
+						You need to login or sign up
+					</Typography>
 				)}
 				<div className={classes.AddNewRequestLink}>
 					<Link to="/services">Back to All Services</Link>

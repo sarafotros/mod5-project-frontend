@@ -14,7 +14,9 @@ function ContactUs ()  {
 const classes = useStyles();
     return (
 			<Paper className={classes.ContactBox}>
-				<Typography variant="h4">Contact Us</Typography>
+				<Typography variant="h4" className={classes.ContactBoxTitle}>
+					Contact Us
+				</Typography>
 				<Typography variant="body1">
 					There are many variations of passages of Lorem Ipsum available, but
 					the majority have suffered alteration in some form, by injected
@@ -22,11 +24,8 @@ const classes = useStyles();
 					If you are going to use a passage of Lorem Ipsum, you need to be sure
 					there isn't anything embarrassing hidden in the middle of text. All
 					the Lorem Ipsum generators on the Internet tend to repeat predefined
-					chunks as necessary, making this the first true generator on the
-					Internet. It uses a dictionary of over 200 Latin words, combined with
-					a handful of model sentence structure
+					chunks as necessary, making this the fi
 				</Typography>
-				<br />
 				<br />
 				<br />
 				<div className={classes.ContactInfo}>
@@ -38,11 +37,11 @@ const classes = useStyles();
 							<PhoneIcon className={classes.ContactIcon} /> +44(0)99999999
 						</Typography>
 					</div>
-					<div style={{ height: '400px', width: '50%' }}>
+					<div className={classes.contactMap}>
 						<GoogleMapReact
 							bootstrapURLKeys={{ key: APIkey }}
-							defaultCenter={{ lng: -0.0874836, lat: 51.5202116} }
-                            defaultZoom={11}
+							defaultCenter={{ lng: -0.0874836, lat: 51.5202116 }}
+							defaultZoom={11}
 						>
 							<>
 								<MarkerIcon />

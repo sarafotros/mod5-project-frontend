@@ -42,6 +42,7 @@ function HandymanSignInModal(props) {
         localStorage.user_id = handy_man.id;
         localStorage.name = handy_man.name;
         localStorage.handyname = handy_man.handyname;
+        localStorage.specialty = handy_man.specialty;
         setSnackBarMessage('Successfully logged in.');
         setSnackSeverity('success');
         setSnackBarIsOpen(true);

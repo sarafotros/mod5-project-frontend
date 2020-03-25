@@ -11,7 +11,7 @@ class Service extends React.Component {
 
     return (
 			<Link
-				to={'services/' + service.category + '/' + service.name}
+				to={'/services/' + service.category + '/' + service.name}
 				onClick={() =>
 					localStorage.setItem('selectedService', JSON.stringify(service))
 				}

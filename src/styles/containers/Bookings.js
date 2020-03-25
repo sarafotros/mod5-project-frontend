@@ -19,7 +19,11 @@ const styles = theme => ({
         flex: 4,
     },
     booking__status:{
-        color: 'rgb(192, 192, 87)',
+        color: theme.palette.primary.main,
+        flex:1,
+    },
+    booking__statusTrue: {
+        color: theme.palette.secondary.main,
         flex:1,
     },
     booking__btn:{

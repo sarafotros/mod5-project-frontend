@@ -1,6 +1,6 @@
 import React from 'react';
 import API from '../API';
-import { withRouter } from 'react-router-dom';
+import { withRouter ,Redirect } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import styles from '../styles/components/requestDetails'
@@ -31,6 +31,9 @@ class RequestDetails extends React.Component {
         console.log('props', this.props)
 		const { requestDetails } = this.state
 		const { classes } = this.props
+		if (!localStorage.token) {
+			return <Redirect to="/" />;
+		}
         return requestDetails ? (
 					<Paper className={classes.paper}>
 						<div className={classes.paperText}>

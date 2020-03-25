@@ -6,6 +6,7 @@ import ContactUs from '../components/ContactUs'
 import AddNewRequest from '../components/AddNewRequest';
 import RequestDetails from '../components/requestDetails';
 import Bookings from './Bookings';
+import HandyContracts from './HandyContarcts'
 
 
 
@@ -32,6 +33,9 @@ function MainRouter() {
 				</Route>
 				<Route exact path="/contact-us">
 					<ContactUs />
+				</Route>
+				<Route exact path="/contracts">
+					<HandyContracts />
 				</Route>
 			</>
 		);

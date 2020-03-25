@@ -13,30 +13,43 @@ const handyLoginURL = baseUrl + '/login_handy';
 const validateHandyURL = baseUrl + '/valid_handy';
 const signupHandyURL = baseUrl + '/signup_handy';
 
-const get = (url) => (fetch(url, { headers: { 'Authorization': localStorage.token } }).then(resp => resp.json()));
+const get = url =>
+	fetch(url, { headers: { Authorization: localStorage.token } }).then(resp =>
+		resp.json()
+	);
 
-const getToken = (url, token) =>(
-	fetch(url, { headers: { 'Authorization': token } }).then(resp => resp.json())
-)
+const getToken = (url, token) =>
+	fetch(url, { headers: { Authorization: token } }).then(resp => resp.json());
 
-const deleteAPI = (url) => (fetch(url,
-	{ method: 'DELETE', headers: { 'Authorization': localStorage.token } })
-	.then(resp => resp.json())
-) 
+const deleteAPI = url =>
+	fetch(url, {
+		method: 'DELETE',
+		headers: { Authorization: localStorage.token }
+	}).then(resp => resp.json());
 
+const patchAPI = (url, obj) => {
+	console.log('before fetch', url, obj);
+	fetch(url, {
+		method: 'PATCH',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: localStorage.token
+		},
+		body: JSON.stringify(obj)
+	}).then(resp => resp.json());
+};
 
 const post = (url, obj) => {
 	const configObject = {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
-			'Accept': 'application/json'
+			Accept: 'application/json'
 		},
 		body: JSON.stringify(obj)
-	}
+	};
 	return fetch(url, configObject);
-}
-
+};
 
 const getUsers = () => get(userUrl);
 
@@ -44,26 +57,29 @@ const getServices = () => get(serviceUrl);
 
 const getHandyman = () => get(handymanUrl);
 
-const getRequestDetails = (id) => get(urlRequest + id)
+const getRequestDetails = id => get(urlRequest + id);
 
 const getRequests = () => get(urlRequest);
 
 const removeRequest = id => deleteAPI(urlRequest + id);
 
-//user sign in + sign up + validate
-const logingFetch = (body) => {
-	return post(loginUrl, body).then(resp => resp.json());
+const editRequest = (obj, id) => {
+	console.log('before patching', obj, id);
+	patchAPI(urlRequest + id, obj);
 };
 
+//user sign in + sign up + validate
+const logingFetch = body => {
+	return post(loginUrl, body).then(resp => resp.json());
+};
 
 const validate = token => {
 	return getToken(validateURL, token);
 };
 
-
-const signup = (body) => {
-    return post(signupURL,body).then(resp => resp.json())
-}
+const signup = body => {
+	return post(signupURL, body).then(resp => resp.json());
+};
 
 // HANDYMAN  sign in + sign up + validate
 const logingHandyFetch = body => {
@@ -78,8 +94,6 @@ const signupHandy = body => {
 	return post(signupHandyURL, body).then(resp => resp.json());
 };
 
-
-
 // API object
 export default {
 	getUsers,
@@ -93,6 +107,6 @@ export default {
 	logingHandyFetch,
 	validateHandy,
 	signupHandy,
-	removeRequest
+	removeRequest,
+	editRequest
 };
-
