@@ -12,8 +12,8 @@ import NextIcon from '@material-ui/icons/KeyboardArrowRight';
 import BackIcon from '@material-ui/icons/KeyboardArrowLeft';
 import SubmitIcon from '@material-ui/icons/Done';
 
-// const URLUpload = 'https://handy-app-sf.herokuapp.com/upload-photos';
-const URLUpload = 'http://localhost:3001/upload-photos';
+const URLUpload = 'https://handy-app-sf.herokuapp.com/upload-photos';
+// const URLUpload = 'http://localhost:3001/upload-photos';
 
 const levels = [
 	{
