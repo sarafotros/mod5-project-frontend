@@ -1,4 +1,4 @@
-const baseUrl = 'https://handy-app-sf.herokuapp.com/';
+const baseUrl = 'https://handy-app-sf.herokuapp.com';
 // const baseUrl = 'http://localhost:3001';
 
 const userUrl = baseUrl + '/users';
