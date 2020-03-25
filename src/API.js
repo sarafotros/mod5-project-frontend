@@ -1,5 +1,5 @@
-// const baseUrl = 'https://handy-app-sf.herokuapp.com';
-const baseUrl = 'http://localhost:3001';
+const baseUrl = 'https://handy-app-sf.herokuapp.com';
+// const baseUrl = 'http://localhost:3001';
 
 const URLUpload = baseUrl + '/upload-photos';
 const userUrl = baseUrl + '/users';
