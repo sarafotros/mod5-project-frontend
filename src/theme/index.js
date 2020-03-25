@@ -3,6 +3,7 @@ import { red } from '@material-ui/core/colors';
 
 let theme = createMuiTheme({
 	palette: {
+		// light blue grey
 		// primary: {
 		// 	light: '#ffffff',
 		// 	main: '#e0e0e0',
@@ -14,16 +15,17 @@ let theme = createMuiTheme({
 		// 	dark: '#5d99c6'
 		// }
 
-		primary: {
-		main: '#37474f',
-		light: '#62727b',
-		dark: '#102027'
-		},
-		secondary: {
-			main: '#b71c1c',
-			light: '#f05545',
-			dark: '#7f0000'
-		},
+		// // red+dark grey
+		// primary: {
+		// main: '#37474f',
+		// light: '#62727b',
+		// dark: '#102027'
+		// },
+		// secondary: {
+		// 	main: '#b71c1c',
+		// 	light: '#f05545',
+		// 	dark: '#7f0000'
+		// },
 
 		// primary: {
 		// 	// main: '#9e9e9e',
@@ -39,16 +41,17 @@ let theme = createMuiTheme({
 		// 	dark: '#c48b9f'
 		// }
 
-		//  primary: {
-		// 	main: '#606060',
-		// 	light: '#8d8d8d',
-		// 	dark: '#363636'
-		// },
-		// secondary: {
-		// 	main: '#80deea',
-		// 	light: '#b4ffff',
-		// 	dark: '#4bacb8'
-		// }
+		// blue grey dark
+		primary: {
+			main: '#606060',
+			light: 'rgba(150, 149, 149, 0.38)',
+			dark: '#363636'
+		},
+		secondary: {
+			main: '#80deea',
+			light: '#b4ffff',
+			dark: '#4bacb8'
+		}
 	},
 	typography: {
 		fontFamily: '"Baloo 2" ,cursive',

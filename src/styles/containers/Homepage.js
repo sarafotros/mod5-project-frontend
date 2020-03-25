@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
 			duration: theme.transitions.duration.leavingScreen
 		})
 	},
+	AppBarGridAuthentication: {
+		cursor: 'pointer',	
+	},
 	appBarShift: {
 		marginLeft: drawerWidth,
 		width: `calc(100% - ${drawerWidth}px)`,

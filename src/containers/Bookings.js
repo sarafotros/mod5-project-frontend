@@ -32,8 +32,11 @@ class Bookings extends React.Component {
 	}
 	
 	editBooking = (id) => {
-		const obj = { handy_man_id:parseInt(localStorage.handyman_id), 'confirmed?': true }
-		API.editRequest( obj , id)
+		const obj = { handy_man_id: parseInt(localStorage.handyman_id), 'confirmed?': true }
+		API.editRequest(obj, id)
+			.then(() => {
+				this.getRequests()
+			})
 	}
 
     componentDidMount() {
@@ -62,9 +65,17 @@ class Bookings extends React.Component {
 											<Typography variant="body1">{req.date}</Typography>
 											<Typography variant="body1">{req.time}</Typography>
 										</div>
-										{req['confirmed?'] ?
-											<div className={classes.booking__statusTrue}>Confirmed</div>
-											: <div className={classes.booking__status}>Pending</div>}
+										{req['confirmed?'] ? (
+											<div className={classes.booking__statusTrue}>
+												<Typography variant="h6">{ localStorage.handyman_id == req.handy_man_id ?
+													'Confirmed' : 'Taken'
+													}</Typography>
+											</div>
+										) : (
+											<div className={classes.booking__status}>
+												<Typography variant="h6">Pending</Typography>
+											</div>
+										)}
 										<div className={classes.booking__btn}>
 											<Link to={'bookings/' + req.id}>
 												<Button
@@ -95,6 +106,7 @@ class Bookings extends React.Component {
 														color="secondary"
 														className={classes.button}
 														endIcon={<AcceptIcon />}
+														disabled={req['confirmed?']}
 													>
 														Accept
 													</Button>

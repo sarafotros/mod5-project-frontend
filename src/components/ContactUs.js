@@ -7,11 +7,13 @@ import GoogleMapReact from 'google-map-react';
 import MarkerIcon from '@material-ui/icons/LocationOn';
 
 
-let APIkey = process.env.GOOGLE_API;
+
 
 function ContactUs ()  {
    
-const classes = useStyles();
+	const classes = useStyles();
+	const APIkey = process.env.REACT_APP_GOOGLE_API;
+	console.log('apikey', APIkey);
     return (
 			<Paper className={classes.ContactBox}>
 				<Typography variant="h4" className={classes.ContactBoxTitle}>

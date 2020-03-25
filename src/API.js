@@ -1,6 +1,7 @@
-const baseUrl = 'https://handy-app-sf.herokuapp.com';
-// const baseUrl = 'http://localhost:3001';
+// const baseUrl = 'https://handy-app-sf.herokuapp.com';
+const baseUrl = 'http://localhost:3001';
 
+const URLUpload = baseUrl + '/upload-photos';
 const userUrl = baseUrl + '/users';
 const loginUrl = baseUrl + '/login';
 const validateURL = baseUrl + '/validate';
@@ -27,8 +28,7 @@ const deleteAPI = url =>
 		headers: { Authorization: localStorage.token }
 	}).then(resp => resp.json());
 
-const patchAPI = (url, obj) => {
-	console.log('before fetch', url, obj);
+const patchAPI = (url, obj) => 
 	fetch(url, {
 		method: 'PATCH',
 		headers: {
@@ -37,7 +37,6 @@ const patchAPI = (url, obj) => {
 		},
 		body: JSON.stringify(obj)
 	}).then(resp => resp.json());
-};
 
 const post = (url, obj) => {
 	const configObject = {
@@ -63,10 +62,8 @@ const getRequests = () => get(urlRequest);
 
 const removeRequest = id => deleteAPI(urlRequest + id);
 
-const editRequest = (obj, id) => {
-	console.log('before patching', obj, id);
-	patchAPI(urlRequest + id, obj);
-};
+const editRequest = (obj, id) => patchAPI(urlRequest + id, obj);
+
 
 //user sign in + sign up + validate
 const logingFetch = body => {
@@ -108,5 +105,6 @@ export default {
 	validateHandy,
 	signupHandy,
 	removeRequest,
-	editRequest
+	editRequest,
+	URLUpload
 };

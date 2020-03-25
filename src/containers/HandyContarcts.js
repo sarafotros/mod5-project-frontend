@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import API from '../API';
 import { Typography, Paper, Button } from '@material-ui/core';
 import ShowIcon from '@material-ui/icons/EventNote';
-import { Link } from 'react-router-dom';
+import { Link , Redirect } from 'react-router-dom';
 import useStyles from '../styles/containers/HandyContracts';
 
 
@@ -24,7 +24,9 @@ function HandyContratcs() {
     }, []);
 
     console.log('data: ', data);
-    
+     if (!localStorage.token) {
+				return <Redirect to="/" />;
+			}
     return (
 			<div>
 				{!data ? (

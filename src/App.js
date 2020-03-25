@@ -6,7 +6,7 @@ import './App.css';
 import MainPanel from './containers/MainPanel';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
-
+require('dotenv').config();
 
 class App extends React.Component {
   render() {

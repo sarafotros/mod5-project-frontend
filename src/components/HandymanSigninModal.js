@@ -39,7 +39,7 @@ function HandymanSignInModal(props) {
       if (handy_man) {
         localStorage.token = token;
         localStorage.role = 'handyman';
-        localStorage.user_id = handy_man.id;
+        localStorage.handyman_id = handy_man.id;
         localStorage.name = handy_man.name;
         localStorage.handyname = handy_man.handyname;
         localStorage.specialty = handy_man.specialty;

@@ -27,8 +27,7 @@ export default class Appbar extends Component {
   };
 
   logOutClicked = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    localStorage.clear()
     window.location.reload();
   };
 
@@ -36,63 +35,71 @@ export default class Appbar extends Component {
     const { classes, open, handleDrawerOpen } = this.props;
     const { loginModalIsOpen, signupModalIsOpen } = this.state;
     return (
-      <>
-        <SigninModal
-          isOpen={loginModalIsOpen}
-          toggleLoginModal={this.toggleLoginModal}
-        />
-        <SignUpModal
-          isOpen={signupModalIsOpen}
-          toggleSignupModal={this.toggleSignupModal}
-        />
-        <AppBar
-          position='fixed'
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-          color='primary'
-        >
-          <Toolbar>
-            <IconButton
-              color='inherit'
-              aria-label='open drawer'
-              onClick={handleDrawerOpen}
-              edge='start'
-              className={clsx(classes.menuButton, {
-                [classes.hide]: open,
-              })}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Grid container justify='space-between' alignItems='center'>
-              <Grid item>
-                <Typography variant='h6' noWrap>
-                  Handy App
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Grid container justify='space-between'>
-                  {localStorage.token ? (
-                    <Grid item onClick={this.logOutClicked}>
-                      Logout
-                    </Grid>
-                  ) : (
-                    <>
-                      <Grid item onClick={this.toggleLoginModal}>
-                        Login
-                      </Grid>
-                      <Grid item>&nbsp;|&nbsp;</Grid>
-                      <Grid item onClick={this.toggleSignupModal}>
-                        Sign up
-                      </Grid>
-                    </>
-                  )}
-                </Grid>
-              </Grid>
-            </Grid>
-          </Toolbar>
-        </AppBar>
-      </>
-    );
+			<>
+				<SigninModal
+					isOpen={loginModalIsOpen}
+					toggleLoginModal={this.toggleLoginModal}
+				/>
+				<SignUpModal
+					isOpen={signupModalIsOpen}
+					toggleSignupModal={this.toggleSignupModal}
+				/>
+				<AppBar
+					position="fixed"
+					className={clsx(classes.appBar, {
+						[classes.appBarShift]: open
+					})}
+					color="primary"
+				>
+					<Toolbar>
+						<IconButton
+							color="inherit"
+							aria-label="open drawer"
+							onClick={handleDrawerOpen}
+							edge="start"
+							className={clsx(classes.menuButton, {
+								[classes.hide]: open
+							})}
+						>
+							<MenuIcon />
+						</IconButton>
+						<Grid container justify="space-between" alignItems="center">
+							<Grid item>
+								<Typography variant="h6" noWrap>
+									Handy App
+								</Typography>
+							</Grid>
+							<Grid item className={classes.AppBarGridAuthentication}>
+								<Grid container justify="space-between">
+									{localStorage.token ? (
+										<>
+											<Grid>
+												{localStorage.role === 'user'
+													? `Username: ${localStorage.username}`
+													: `Handyname: ${localStorage.handyname}`}{' '}
+											</Grid>
+											&emsp;
+											<Grid item onClick={this.logOutClicked}>
+												Logout
+											</Grid>
+										</>
+									) : (
+										<>
+											<Grid item onClick={this.toggleLoginModal}>
+												Login
+											</Grid>
+											<Grid item>&nbsp;|&nbsp;</Grid>
+											<Grid item onClick={this.toggleSignupModal}>
+												Sign up
+											</Grid>
+										</>
+									)}
+								</Grid>
+							</Grid>
+						</Grid>
+					</Toolbar>
+				</AppBar>
+			</>
+		);
   }
 }

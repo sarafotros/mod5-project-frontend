@@ -14,13 +14,15 @@ const styles = theme => ({
 	bigBanner__text: {
 		position: 'absolute',
 		top: 10,
-		right: '50%',
+		right: '40%',
 		[theme.breakpoints.down('sm')]: {
 			right: 'unset'
 		}
 	},
-    bigBanner__btn: {
-       marginTop:12, 
-    }
+	bigBanner__btn: {
+		marginTop: 12,
+		width: 200,
+		fontSize: 16
+	}
 });
 export default styles;

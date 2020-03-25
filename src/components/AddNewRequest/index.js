@@ -11,9 +11,8 @@ import { Button, Typography } from '@material-ui/core';
 import NextIcon from '@material-ui/icons/KeyboardArrowRight';
 import BackIcon from '@material-ui/icons/KeyboardArrowLeft';
 import SubmitIcon from '@material-ui/icons/Done';
+import API from '../../API';
 
-const URLUpload = 'https://handy-app-sf.herokuapp.com/upload-photos';
-// const URLUpload = 'http://localhost:3001/upload-photos';
 
 const levels = [
 	{
@@ -113,6 +112,7 @@ class AddNewRequest extends React.Component {
 			number,
 			postCode
 		} = this.state;
+		
 		const formData = new FormData();
 		formData.append('photo', image);
 		formData.append('description', description);
@@ -123,7 +123,7 @@ class AddNewRequest extends React.Component {
 		formData.append('user_id', localStorage.user_id);
 		formData.append('service_id', JSON.parse(localStorage.selectedService).id);
 
-		return fetch(URLUpload, {
+		return fetch(API.URLUpload, {
 			method: 'POST',
 			headers: {},
 			body: formData
