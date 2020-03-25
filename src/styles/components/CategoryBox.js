@@ -10,6 +10,7 @@ const useStyles = makeStyles(theme => ({
 		padding: 5,
 		border: `2px solid ${theme.palette.primary.light}`,
 		borderRadius: 6,
+		backgroundColor: 'white',
 		boxShadow: '4px 5px 5px #c1c0c0',
 		alignItems: 'center'
 	},
@@ -18,8 +19,8 @@ const useStyles = makeStyles(theme => ({
 		width: 'auto',
 		marginBottom: 5
 	},
-    CategoryBoxtext:{
-        textDecoration: "none",
-    }
+	CategoryBoxtext: {
+		textDecoration: 'none'
+	}
 }));
 export default useStyles;

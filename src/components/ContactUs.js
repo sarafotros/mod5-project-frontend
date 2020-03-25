@@ -6,8 +6,8 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import GoogleMapReact from 'google-map-react';
 import MarkerIcon from '@material-ui/icons/LocationOn';
 
-let APIkey = 'AIzaSyAqaghXFHfeXGeqDFRynev2UoLS9HXyibY';
 
+let APIkey = process.env.GOOGLE_API;
 
 function ContactUs ()  {
    

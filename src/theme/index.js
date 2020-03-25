@@ -2,7 +2,6 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 
 let theme = createMuiTheme({
-
 	palette: {
 		// primary: {
 		// 	light: '#ffffff',
@@ -15,27 +14,41 @@ let theme = createMuiTheme({
 		// 	dark: '#5d99c6'
 		// }
 
+		primary: {
+		main: '#37474f',
+		light: '#62727b',
+		dark: '#102027'
+		},
+		secondary: {
+			main: '#b71c1c',
+			light: '#f05545',
+			dark: '#7f0000'
+		},
+
 		// primary: {
-		// main: '#37474f',
-		// light: '#62727b',
-		// dark: '#102027'
+		// 	// main: '#9e9e9e',
+		// 	light: '#cfcfcf',
+		// 	// dark: '##707070'
+		// 	main: '#606060',
+		// 	//   light: '#8d8d8d',
+		// 	dark: '#363636'
 		// },
 		// secondary: {
-		// 	main: '#b71c1c',
-		// 	light: '#f05545',
-		// 	dark: '#7f0000'
-		// },
+		// 	main: '#f8bbd0',
+		// 	light: '#ffeeff',
+		// 	dark: '#c48b9f'
+		// }
 
-		primary: {
-		    main: '#9e9e9e',
-		    light: '#cfcfcf',
-		    dark: '##707070'
-		  },
-		  secondary: {
-		    main: '#f06292',
-		    light: '#ff94c2',
-		    dark: '#ba2d65'
-		  }
+		//  primary: {
+		// 	main: '#606060',
+		// 	light: '#8d8d8d',
+		// 	dark: '#363636'
+		// },
+		// secondary: {
+		// 	main: '#80deea',
+		// 	light: '#b4ffff',
+		// 	dark: '#4bacb8'
+		// }
 	},
 	typography: {
 		fontFamily: '"Baloo 2" ,cursive',
@@ -66,7 +79,7 @@ let theme = createMuiTheme({
 		}
 	},
 	paper: {
-		backgroundColor: 'red',
+		backgroundColor: 'red'
 	}
 });
 
@@ -82,4 +95,15 @@ export default theme;
 //     main: '#f06292',
 //     light: '#ff94c2',
 //     dark: '#ba2d65'
+//   }
+
+// primary: {
+//     main: '#606060',
+//     light: '#8d8d8d',
+//     dark: '#363636'
+//   },
+//   secondary: {
+//     main: '#80deea',
+//     light: '#b4ffff',
+//     dark: '#4bacb8'
 //   }

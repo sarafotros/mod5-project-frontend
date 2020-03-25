@@ -5,8 +5,7 @@ import { TextField } from '@material-ui/core';
 import GoogleMapReact from 'google-map-react';
 import MarkerIcon from '@material-ui/icons/LocationOn';
 
-
-let APIkey = 'AIzaSyAqaghXFHfeXGeqDFRynev2UoLS9HXyibY';
+let APIkey = process.env.GOOGLE_API;
 
 class LocationForm extends Component {
 
