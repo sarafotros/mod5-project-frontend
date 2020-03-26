@@ -10,7 +10,7 @@ const APIkey = process.env.REACT_APP_GOOGLE_API;
 class LocationForm extends Component {
 
 	onMapClicked = newCenter => {
-		console.log(newCenter);
+		// console.log(newCenter);
 		this.props.changeCenter(newCenter);
 	};
 

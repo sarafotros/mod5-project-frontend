@@ -13,7 +13,7 @@ function ContactUs ()  {
    
 	const classes = useStyles();
 	const APIkey = process.env.REACT_APP_GOOGLE_API;
-	console.log('apikey', APIkey);
+	// console.log('apikey', APIkey);
     return (
 			<Paper className={classes.ContactBox}>
 				<Typography variant="h4" className={classes.ContactBoxTitle}>
