@@ -44,7 +44,8 @@ class AddNewRequest extends React.Component {
 		selectedDay: new Date(),
 		description: '',
 		image: '',
-		imageName: ''
+		imageName: '',
+		showImageError: false,
 	};
 
 	// taking states from child components
@@ -88,7 +89,8 @@ class AddNewRequest extends React.Component {
 		
 		this.setState({
 			image: files[0],
-			imageName: files[0].name
+			imageName: files[0].name,
+			showImageError: false
 		});
 	};
 
@@ -110,9 +112,16 @@ class AddNewRequest extends React.Component {
 			selectedDay,
 			selectedHour,
 			number,
-			postCode
+			postCode,
 		} = this.state;
 		
+		if (!image) {
+			this.setState({
+				showImageError: true
+			})
+			return
+		}
+
 		const formData = new FormData();
 		formData.append('photo', image);
 		formData.append('description', description);
@@ -146,7 +155,8 @@ class AddNewRequest extends React.Component {
 			image,
 			imageName,
 			zoom,
-			center 
+			center,
+			showImageError,
 		} = this.state;
 		const { classes } = this.props;
 
@@ -174,6 +184,7 @@ class AddNewRequest extends React.Component {
 				)}
 				{levels[currentLevel].value === 'UPLOAD_DATA' && (
 					<UploadData
+						showImageError={showImageError}
 						description={description}
 						image={image}
 						imageName={imageName}
@@ -212,6 +223,7 @@ class AddNewRequest extends React.Component {
 								color="secondary"
 								className={classes.button}
 								endIcon={<SubmitIcon />}
+								// disabled={!image}
 							>
 								Submit
 							</Button>

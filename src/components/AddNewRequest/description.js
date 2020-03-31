@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import styles from '../../styles/components/AddNewRequest/description';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
@@ -7,7 +8,10 @@ import { Typography } from '@material-ui/core';
  class Description extends Component {
   render() {
     const service = JSON.parse(localStorage.getItem('selectedService'));
-    const { classes } = this.props
+	  const { classes } = this.props
+	   if (!service) {
+				return <Redirect to="/" />;
+			}
     return (
 			<div>
 				<Typography className={classes.description__Title} variant="h3">

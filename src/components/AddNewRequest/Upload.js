@@ -13,13 +13,14 @@ class Upload extends Component {
  
 
   render() {
-    const {imageName , description , changeImage , changePhotoDescription , classes} = this.props
+    const {imageName , description , changeImage , changePhotoDescription , classes , showImageError} = this.props
     return (
 			<div>
 				<Typography className={classes.uploadTextTitle} variant="h2">
 					Upload a Photo
 				</Typography>
-				<DropZone onChange={changeImage} />
+			<DropZone onChange={changeImage}
+				showImageError={showImageError}/>
 
 				<Typography variant="caption">{imageName}</Typography>
         <br/>

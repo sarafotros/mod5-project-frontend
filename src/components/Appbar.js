@@ -76,7 +76,7 @@ export default class Appbar extends Component {
 											<Grid>
 												{localStorage.role === 'user'
 													? `Username: ${localStorage.username}`
-													: `Handyname: ${localStorage.handyname}`}{' '}
+													: `Handyname: ${localStorage.handyname}   /  Specialty: ${localStorage.specialty}`}{' '}
 											</Grid>
 											&emsp;
 											<Grid item onClick={this.logOutClicked}>

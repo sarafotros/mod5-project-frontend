@@ -67,9 +67,14 @@ class Bookings extends React.Component {
 										</div>
 										{req['confirmed?'] ? (
 											<div className={classes.booking__statusTrue}>
-												<Typography variant="h6">{ localStorage.handyman_id == req.handy_man_id ?
-													'Confirmed' : 'Taken'
-													}</Typography>
+												<Typography variant="h6">
+													{localStorage.handyman_id == req.handy_man_id ||
+													localStorage.role === 'user'
+														? 'Confirmed'
+														: 'Taken'}
+													{/* (localStorage.role === 'handyman' ?'Taken' :
+													'Confirmed') */}
+												</Typography>
 											</div>
 										) : (
 											<div className={classes.booking__status}>
@@ -94,6 +99,7 @@ class Bookings extends React.Component {
 													color="secondary"
 													className={classes.button}
 													endIcon={<DeleteIcon />}
+													disabled={req['confirmed?']}
 												>
 													Delete
 												</Button>

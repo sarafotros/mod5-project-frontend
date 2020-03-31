@@ -4,7 +4,7 @@ import useStyles from '../styles/components/DropZone';
 
 
 function MyDropzone(props) {
-    const { value, onChange } = props;
+    const { value, onChange, showImageError } = props;
 	const onDrop = useCallback(acceptedFiles => {
 		onChange(acceptedFiles)
 	}, []);
@@ -17,7 +17,7 @@ function MyDropzone(props) {
 			{isDragActive ? (
 				<p>Drop the file here ...</p>
 			) : (
-				<p>Drag & drop a files here, or click to select file</p>
+				  <p style={{ color : showImageError ? 'red' : 'black'}}>Drag & drop a files here, or click to select file</p>
 			)}
 		</div>
 	);
