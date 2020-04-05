@@ -12,7 +12,7 @@ class Services extends React.Component {
 	state = {
 		services: [],
 		searchTerm: '',
-		filteredServices: []
+		filteredServices: null
 	};
 
 	getServices = () => {
@@ -55,6 +55,7 @@ class Services extends React.Component {
 
 		console.log('searchTerm', searchTerm);
 		console.log('services', services);
+
 		const newServices = services.map(category => {
 			return {
 				category: category.category,
@@ -71,14 +72,13 @@ class Services extends React.Component {
 
 	componentDidMount() {
 		this.getServices()
-		// const { services } = this.;
-
 	}
 
 	render() {
 		const { filteredServices } = this.state;
 		const { classes } = this.props;
 		return (
+		
 		<>
 				{filteredServices ?
 				<div className = "services">
@@ -96,8 +96,8 @@ class Services extends React.Component {
 					)
 				}}/>	
 				</div>	
-			 {filteredServices.map(singleCategory =>
-				singleCategory.items.length > 0 ? (
+			     {filteredServices.map(singleCategory =>
+				 singleCategory.items.length > 0 ? (
 					<div key={singleCategory.category}>
 						<Typography className={classes.servicesCategoryText} variant="h4">{singleCategory.category}</Typography>
 						<div className={classes.services__categoryServices}>
@@ -109,10 +109,12 @@ class Services extends React.Component {
 						</div>
 					</div>
 				) : null
-			)
-		}
-				</div> : <Typography variant="h4">Loading...</Typography>}
-				</>
+				)
+			}
+			</div>
+			:
+			<Typography variant="h3">Loading...</Typography>}
+		</>
 		);
 	}
 }
