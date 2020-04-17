@@ -55,7 +55,7 @@ class Services extends React.Component {
 
 		console.log('searchTerm', searchTerm);
 		console.log('services', services);
-
+		
 		const newServices = services.map(category => {
 			return {
 				category: category.category,
