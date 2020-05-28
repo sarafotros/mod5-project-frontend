@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from '../styles/containers/Services'
 import { Typography, TextField, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-
+import MyLoader from '../components/ContentLoader';
 
 class Services extends React.Component {
 	state = {
@@ -122,8 +122,13 @@ class Services extends React.Component {
 				) : (
 					<>
 						<Typography variant="h3">Loading...</Typography>
-						<Typography variant="h5">loading the data will take  20-30 sec for the first time </Typography>
-						{/* <img src="https://images.app.goo.gl/GGaCEGZrbSzEWXsc7" alt="loading" /> */}
+						<Typography variant="h5">
+							loading the data will take 20-30 sec for the first time{' '}
+						</Typography>
+						<MyLoader />
+						<MyLoader />
+						<MyLoader />
+						<MyLoader />
 					</>
 				)}
 			</>

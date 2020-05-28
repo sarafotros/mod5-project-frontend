@@ -20,6 +20,7 @@
     "mapbox-gl": "^1.8.1",
     "moment": "^2.24.0",
     "react": "^16.13.0",
+    "react-content-loader": "^5.0.4",
     "react-dom": "^16.13.0",
     "react-dropzone": "^10.2.1",
     "react-geocode": "^0.2.1",
