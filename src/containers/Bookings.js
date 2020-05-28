@@ -9,6 +9,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AcceptIcon from '@material-ui/icons/ThumbUp';
 import AddRequestIcon from '@material-ui/icons/ShoppingCart';
 import styles from '../styles/containers/Bookings';
+import ContentLoader, { Facebook, Instagram } from 'react-content-loader';
+
 
 class Bookings extends React.Component {
 	state = {
@@ -136,7 +138,10 @@ class Bookings extends React.Component {
 				)}
 			</>
 		) : (
-			<h3>Loading ...</h3>
+			<>
+				<h3>Loading ...</h3>
+				<Instagram />
+			</>
 		);
 	}
 }

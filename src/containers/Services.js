@@ -7,7 +7,7 @@ import styles from '../styles/containers/Services'
 import { Typography, TextField, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import MyLoader from '../components/ContentLoader';
-import ContentLoader, { Facebook, Instagram } from 'react-content-loader';
+
 
 
 
@@ -132,7 +132,7 @@ class Services extends React.Component {
 						<MyLoader />
 						<MyLoader />
 						<MyLoader />
-						<Instagram />
+				
 					</>
 				)}
 			</>
