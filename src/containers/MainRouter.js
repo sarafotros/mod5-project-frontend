@@ -37,9 +37,9 @@ function MainRouter() {
 				<Route exact path="/contracts">
 					<HandyContracts />
 				</Route>
-				<Route exact path="/*">
+				{/* <Route exact path="/">
 					<NotFound />
-				</Route>
+				</Route> */}
 			</>
 		);
 }
